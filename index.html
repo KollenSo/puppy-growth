@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#fff6ed" />
+  <meta name="theme-color" content="#fff7ef" />
   <meta name="description" content="小狗養成 · 儲蓄成長記" />
   <title>小狗養成 · 儲蓄成長記</title>
   <link rel="stylesheet" href="styles.css" />
@@ -28,11 +28,22 @@
         </div>
       </div>
       <div class="top-right">
-        <a href="portfolio.html" class="chip" style="text-decoration:none;font-weight:700;color:inherit">📊 組合回報</a>
+        <nav class="site-nav" aria-label="主要導覽">
+          <a href="index.html" class="active">養成</a>
+          <a href="portfolio.html">組合回報</a>
+        </nav>
         <button type="button" class="icon-btn" id="btnMute" aria-label="靜音" title="音效（預設靜音）">🔇</button>
         <div class="chip" id="asOfLabel">載入中…</div>
       </div>
     </header>
+
+    <div class="trust-strip" aria-label="信任提示">
+      <span class="trust-pill">🔒 前端唔連 IBKR</span>
+      <span class="trust-pill">🎯 目標 $48,000</span>
+      <span class="trust-pill">🌱 養成由 $0 起計</span>
+    </div>
+
+    <div class="banner loading" id="statusBanner">正在載入儲蓄快照…</div>
 
     <section class="hero glass">
       <div class="stage-pill" id="stageBadge">階段 1／5</div>
@@ -45,7 +56,7 @@
         </div>
         <h2 class="stage-title" id="stageName">新生小狗</h2>
         <p class="stage-desc" id="stageDesc">啱啱出世嘅小狗 · 小小隻好得意</p>
-        <p class="stage-tip" id="stageTip"></p>
+        <p class="stage-tip" id="stageTip">載入進度中…</p>
       </div>
     </section>
 
@@ -53,7 +64,7 @@
       <div class="prog-head">
         <div>
           <h3>養成進度</h3>
-          <p class="prog-sub">目標 $48,000 · 由 $0 開始計</p>
+          <p class="prog-sub">目標 $48,000 · 由 $0 開始計（IB 現有結餘暫唔計）</p>
         </div>
         <div class="ring-wrap" aria-hidden="true">
           <svg class="ring" viewBox="0 0 72 72">
@@ -80,7 +91,10 @@
           <strong id="goalHkd">$48,000</strong>
         </div>
       </div>
-      <div class="breakdown" id="breakdown"></div>
+      <div class="breakdown" id="breakdown">
+        <div class="skeleton"></div>
+        <div class="skeleton" style="width:70%"></div>
+      </div>
       <p class="monthly" id="monthlyTip"></p>
     </section>
 
@@ -119,9 +133,9 @@
     </nav>
 
     <footer class="foot">
-      <p><a href="portfolio.html" style="color:inherit;font-weight:700">📊 睇組合回報 →</a></p>
+      <p><a href="portfolio.html">📊 睇組合回報 →</a></p>
       <p>成長只跟養成已計入金額 · IB 現有結餘暫唔計</p>
-      <p class="note">數據：Finance Manager IB 快照（前端唔連 IBKR）。更新 <code>python3 /workspace/ib/export_savings_snapshot.py</code> 後複製去 <code>data/savings_snapshot.json</code></p>
+      <p class="note">數據：Finance Manager IB 快照（前端唔連 IBKR）。更新後複製去 <code>data/savings_snapshot.json</code></p>
     </footer>
   </main>
 

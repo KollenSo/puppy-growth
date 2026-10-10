@@ -3,75 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#fff6ed" />
+  <meta name="theme-color" content="#fff7ef" />
   <meta name="description" content="組合回報 · 小狗養成帳戶" />
   <title>組合回報 · 小狗養成</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
-  <style>
-    .nav-links { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-    .nav-links a {
-      text-decoration: none; font-size: 0.78rem; font-weight: 700;
-      color: var(--ink); background: var(--card); backdrop-filter: blur(10px);
-      padding: 8px 12px; border-radius: 999px; border: 1px solid var(--card-border);
-      box-shadow: var(--shadow); white-space: nowrap;
-    }
-    .nav-links a.active {
-      background: linear-gradient(135deg, var(--accent), var(--pink));
-      color: #fff; border-color: transparent;
-    }
-    .hero-title { font-size: 1.35rem; font-weight: 900; margin-bottom: 4px; }
-    .hero-sub { color: var(--muted); font-size: 0.86rem; margin-bottom: 14px; line-height: 1.45; }
-    .big-num {
-      font-size: 2rem; font-weight: 900; letter-spacing: -0.02em;
-      background: linear-gradient(135deg, var(--accent), var(--pink));
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
-    .stat {
-      background: linear-gradient(160deg, #fff8f0, #ffe9d6);
-      border-radius: 16px; padding: 12px;
-      border: 1px solid rgba(255, 138, 92, 0.15);
-    }
-    .stat.cool {
-      background: linear-gradient(160deg, #f2fbff, #e0f4ff);
-      border-color: rgba(110, 198, 230, 0.25);
-    }
-    .stat.fee {
-      background: linear-gradient(160deg, #fff5f0, #ffe0d6);
-      border-color: rgba(255, 122, 89, 0.35);
-      grid-column: 1 / -1;
-    }
-    .stat .lbl { display: block; font-size: 0.7rem; color: var(--muted); margin-bottom: 3px; }
-    .stat strong { font-size: 1.05rem; font-weight: 900; }
-    .stat .sub { display: block; font-size: 0.72rem; color: var(--muted); margin-top: 4px; line-height: 1.35; }
-    .table {
-      width: 100%; border-collapse: collapse; font-size: 0.84rem; margin-top: 8px;
-    }
-    .table th, .table td {
-      text-align: left; padding: 10px 8px; border-bottom: 1px solid rgba(47,33,22,0.08);
-    }
-    .table th { font-size: 0.72rem; color: var(--muted); font-weight: 700; }
-    .table td.num, .table th.num { text-align: right; font-variant-numeric: tabular-nums; }
-    .table tr.total td { font-weight: 900; border-bottom: none; padding-top: 12px; }
-    .warn {
-      background: linear-gradient(135deg, #fff3e0, #ffe8cc);
-      color: #7a4a12; border: 1px solid rgba(255, 179, 71, 0.45);
-      border-radius: 14px; padding: 12px 14px; font-size: 0.82rem; line-height: 1.5;
-      margin-top: 12px;
-    }
-    .ok-note {
-      background: rgba(94, 207, 122, 0.12);
-      border: 1px solid rgba(94, 207, 122, 0.28);
-      border-radius: 14px; padding: 12px 14px; font-size: 0.82rem; line-height: 1.5;
-      margin-top: 10px; color: #2d5a3a;
-    }
-    .bar-mini { margin-top: 10px; }
-    .shell.portfolio-shell { padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px)); }
-    .loading { color: var(--muted); font-size: 0.9rem; }
-  </style>
 </head>
 <body>
   <div class="bg" aria-hidden="true">
@@ -86,21 +24,29 @@
         <div class="brand-mark" aria-hidden="true">📊</div>
         <div>
           <h1>組合回報</h1>
-          <p class="tagline">小狗養成帳戶 · 全倉一覽</p>
+          <p class="tagline">全倉市值 · 費用估算 · 目標進度</p>
         </div>
       </div>
       <div class="top-right">
-        <nav class="nav-links" aria-label="頁面">
-          <a href="index.html">🐾 養成</a>
+        <nav class="site-nav" aria-label="主要導覽">
+          <a href="index.html">養成</a>
           <a href="portfolio.html" class="active">組合回報</a>
         </nav>
         <div class="chip" id="asOfLabel">載入中…</div>
       </div>
     </header>
 
-    <section class="glass">
+    <div class="trust-strip">
+      <span class="trust-pill">🔒 前端唔連 IBKR</span>
+      <span class="trust-pill">📂 本地快照 JSON</span>
+      <span class="trust-pill">估算費用 · 非實際扣款</span>
+    </div>
+
+    <div class="banner loading" id="statusBanner">正在載入組合快照…</div>
+
+    <section class="glass" id="summaryCard">
       <p class="hero-title">帳戶總值（市值）</p>
-      <p class="hero-sub">用快照入面<strong>全部</strong>現金＋持倉計算，唔係單一股票假設。</p>
+      <p class="hero-sub">用快照入面<strong>全部</strong>現金＋持倉計算。</p>
       <div class="big-num" id="totalValue">—</div>
       <div class="stat-grid">
         <div class="stat">
@@ -111,11 +57,13 @@
           <span class="lbl">持倉合計</span>
           <strong id="posVal">—</strong>
         </div>
-        <div class="stat fee" id="feeCard">
-          <span class="lbl">預估交易成本（估算 · 非實際扣款）</span>
-          <strong id="feeVal">—</strong>
-          <span class="sub" id="feeFormula"></span>
-        </div>
+      </div>
+      <div class="fee-banner" id="feeCard" role="note">
+        <span class="fee-label">預估交易成本（估算 · 非實際扣款）</span>
+        <span class="fee-amt" id="feeVal">—</span>
+        <span class="fee-formula" id="feeFormula">公式：max(HKD 8, 總市值 × 0.08%) 單邊</span>
+      </div>
+      <div class="stat-grid">
         <div class="stat cool">
           <span class="lbl">扣費後淨額（概念）</span>
           <strong id="netVal">—</strong>
@@ -130,32 +78,34 @@
     </section>
 
     <section class="glass">
-      <h3 style="font-size:1rem;font-weight:900;margin-bottom:4px;">持倉明細</h3>
-      <p class="hero-sub" style="margin-bottom:0">來自 <code>data/savings_snapshot.json</code> · 前端唔連 IBKR</p>
-      <table class="table" id="holdingsTable">
-        <thead>
-          <tr>
-            <th>項目</th>
-            <th class="num">數量</th>
-            <th class="num">市值 (HKD)</th>
-          </tr>
-        </thead>
-        <tbody id="holdingsBody">
-          <tr><td colspan="3" class="loading">載入中…</td></tr>
-        </tbody>
-      </table>
+      <h3 class="section-title">持倉明細</h3>
+      <p class="hero-sub">來自 <code>data/savings_snapshot.json</code></p>
+      <div class="holdings-wrap">
+        <table class="table" id="holdingsTable">
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th class="num">數量</th>
+              <th class="num">市值 (HKD)</th>
+            </tr>
+          </thead>
+          <tbody id="holdingsBody">
+            <tr><td colspan="3"><div class="skeleton"></div><div class="skeleton" style="width:60%"></div></td></tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section class="glass">
-      <h3 style="font-size:1rem;font-weight:900;margin-bottom:4px;">相對目標進度</h3>
-      <p class="hero-sub">快照<strong>冇成本價／買入紀錄</strong>，所以<strong>計唔到真實盈虧 %</strong>。以下係相對儲蓄目標嘅進度，同埋費用影響。</p>
+      <h3 class="section-title">相對目標進度</h3>
+      <p class="hero-sub">快照<strong>冇成本價</strong>，所以<strong>計唔到真實盈虧 %</strong>。以下係相對儲蓄目標嘅進度。</p>
       <div class="prog-head" style="margin-bottom:10px">
         <div>
           <p class="prog-sub" id="goalLine">目標 —</p>
         </div>
-        <span class="pct" id="progressPct" style="font-size:1.25rem;font-weight:900">—%</span>
+        <span class="pct" id="progressPct">—%</span>
       </div>
-      <div class="bar-track bar-mini" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="barTrack">
+      <div class="bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="barTrack">
         <div class="bar-fill" id="barFill"></div>
       </div>
       <div class="stat-grid">
@@ -169,49 +119,50 @@
           <span class="sub" id="monthsLeft"></span>
         </div>
       </div>
-      <div class="warn" id="honestNote">
-        ⚠️ <strong>誠實說明：</strong>快照只有市值，冇買入成本（cost basis）。因此本頁<strong>唔會虛構</strong>「組合回報 %」。你見到嘅係：而家總市值、預估費用、扣費後淨額，同埋相對 $48,000 目標嘅進度。
+      <div class="warn">
+        ⚠️ <strong>誠實說明：</strong>快照只有市值，冇買入成本（cost basis）。本頁<strong>唔會虛構</strong>「組合回報 %」。你見到嘅係總市值、預估費用、扣費後淨額，同埋相對 $48,000 目標進度。
       </div>
       <div class="ok-note">
-        ✅ 費用用簡單 IB 風格估算：<strong>max(HKD 8, 名義金額 × 0.08%)</strong>（單邊）。只供參考，實際佣金／交易所費／FX 可能唔同。
+        ✅ 費用估算：<strong>max(HKD 8, 名義金額 × 0.08%)</strong>（單邊）。只供參考，實際佣金／交易所費／FX 可能唔同。
       </div>
     </section>
 
     <footer class="foot">
-      <p><a href="index.html" style="color:inherit;font-weight:700">← 返回小狗養成</a></p>
-      <p class="note" style="margin-top:8px">數據來源：Finance Manager IB 快照。更新：<code>python3 /workspace/ib/export_savings_snapshot.py</code> 後複製去 <code>data/savings_snapshot.json</code></p>
+      <p><a href="index.html">← 返回小狗養成</a></p>
+      <p class="note">數據來源：Finance Manager IB 快照。前端唔連 IBKR。</p>
     </footer>
   </main>
 
   <script>
   (() => {
     "use strict";
-
-    // Estimated single-side trading fee (IB-style simple estimate, HKD)
     function estimateFeeHkd(notionalHkd) {
       const n = Math.max(0, Number(notionalHkd) || 0);
-      const pct = n * 0.0008; // 0.08%
-      return Math.max(8, pct);
+      return Math.max(8, n * 0.0008);
     }
-
     function formatHkd(n) {
       const v = Number(n);
       if (!Number.isFinite(v)) return "—";
       return "$" + v.toLocaleString("en-HK", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
-
     function formatPct(n) {
       const v = Number(n);
       if (!Number.isFinite(v)) return "—";
       return v.toFixed(2) + "%";
     }
-
+    function setBanner(type, msg) {
+      const el = document.getElementById("statusBanner");
+      if (!el) return;
+      if (!msg) { el.hidden = true; return; }
+      el.hidden = false;
+      el.className = "banner " + type;
+      el.textContent = msg;
+    }
     async function load() {
       const res = await fetch("data/savings_snapshot.json", { cache: "no-store" });
       if (!res.ok) throw new Error("snapshot load failed");
       return res.json();
     }
-
     function render(data) {
       const cash = Number(data.cashHkd) || 0;
       const posSum = Number(data.positionsHkd) || 0;
@@ -229,22 +180,23 @@
       document.getElementById("posVal").textContent = formatHkd(posSum);
       document.getElementById("feeVal").textContent = formatHkd(fee);
       document.getElementById("feeFormula").textContent =
-        "公式：max( $8 , 總市值 × 0.08% ) = max( $8 , " + formatHkd(total * 0.0008) + " )";
+        "公式：max( $8 , 總市值 × 0.08% ) = max( $8 , " + formatHkd(total * 0.0008) + " ) · 單邊估算";
       document.getElementById("netVal").textContent = formatHkd(net);
       document.getElementById("feeDrag").textContent = formatPct(drag);
 
       const body = document.getElementById("holdingsBody");
-      let rows = "";
-      rows += `<tr><td>現金 Cash</td><td class="num">—</td><td class="num">${formatHkd(cash)}</td></tr>`;
+      let rows = `<tr><td>現金 Cash</td><td class="num">—</td><td class="num">${formatHkd(cash)}</td></tr>`;
       const positions = Array.isArray(data.positions) ? data.positions : [];
       if (!positions.length) {
-        rows += `<tr><td colspan="3">未有持倉</td></tr>`;
+        rows += `<tr><td colspan="3" class="loading">未有持倉</td></tr>`;
       } else {
         for (const p of positions) {
           const sym = p.symbol || "?";
           const qty = p.qty != null ? Number(p.qty).toLocaleString("en-HK", { maximumFractionDigits: 6 }) : "—";
           const mv = formatHkd(p.mktValueHkd);
-          const usd = p.mktValueUsd != null ? ` <span style="opacity:.65;font-size:.75rem">(${formatHkd(p.mktValueUsd).replace("$","US$")})</span>` : "";
+          const usd = p.mktValueUsd != null
+            ? ` <span style="opacity:.65;font-size:.75rem;font-weight:600">(US$${Number(p.mktValueUsd).toFixed(2)})</span>`
+            : "";
           rows += `<tr><td><strong>${sym}</strong>${usd}</td><td class="num">${qty}</td><td class="num">${mv}</td></tr>`;
         }
       }
@@ -261,14 +213,16 @@
         const months = Math.ceil(Math.max(0, goal - total) / monthly);
         document.getElementById("monthsLeft").textContent = "照呢個節奏大約仲要 " + months + " 個月";
       }
+      setBanner("", "");
     }
 
     load()
       .then(render)
       .catch((err) => {
         document.getElementById("asOfLabel").textContent = "載入失敗";
+        setBanner("error", "無法讀取儲蓄快照。請確認 data/savings_snapshot.json 可經 HTTPS 開啟。");
         document.getElementById("holdingsBody").innerHTML =
-          '<tr><td colspan="3">無法讀取 data/savings_snapshot.json（請用 HTTPS／本機 server 開啟）</td></tr>';
+          '<tr><td colspan="3" class="loading">未有數據</td></tr>';
         console.error(err);
       });
   })();

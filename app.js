@@ -54,6 +54,7 @@
     foodFly: $("foodFly"),
     toast: $("toast"),
     btnMute: $("btnMute"),
+    statusBanner: $("statusBanner"),
   };
 
   let meters = loadMeters();
@@ -146,6 +147,35 @@
     els.affectionFill.style.width = meters.affection + "%";
   }
 
+
+  function setBanner(type, msg) {
+    const el = els.statusBanner;
+    if (!el) return;
+    if (!msg) { el.hidden = true; return; }
+    el.hidden = false;
+    el.className = "banner " + type;
+    el.textContent = msg;
+  }
+
+  function setStageImage(stage) {
+    const img = els.puppyImg;
+    if (!img) return;
+    if (img.getAttribute("src") === stage.src) {
+      img.alt = stage.name;
+      return;
+    }
+    img.classList.remove("idle", "swap-in");
+    img.classList.add("swap-out");
+    const done = () => {
+      img.src = stage.src;
+      img.alt = stage.name;
+      img.classList.remove("swap-out");
+      img.classList.add("swap-in", "idle");
+      setTimeout(() => img.classList.remove("swap-in"), 480);
+    };
+    setTimeout(done, 180);
+  }
+
   function setRing(pct) {
     const p = Math.min(100, Math.max(0, pct));
     const offset = RING * (1 - p / 100);
@@ -172,10 +202,7 @@
 
     els.stageBadge.textContent = "階段 " + (stage.id + 1) + "／5";
     els.puppyStage.dataset.stage = String(stage.id);
-    if (els.puppyImg.getAttribute("src") !== stage.src) {
-      els.puppyImg.src = stage.src;
-    }
-    els.puppyImg.alt = stage.name;
+    setStageImage(stage);
     els.stageName.textContent = stage.name;
     els.stageDesc.textContent = stage.desc;
 
@@ -371,13 +398,20 @@
     setRing(0);
     els.puppyImg.classList.add("idle");
 
+    setBanner("loading", "正在載入儲蓄快照…");
     try {
       const data = await loadSnapshot();
       renderSavings(data);
+      setBanner("", "");
     } catch (err) {
       els.stageName.textContent = "載入失敗";
-      els.stageDesc.textContent = "請用本機 server 開啟並確認 data/savings_snapshot.json";
+      els.stageDesc.textContent = "請確認 data/savings_snapshot.json 可開啟";
+      els.stageTip.textContent = "無法顯示養成進度";
       els.asOfLabel.textContent = "無數據";
+      if (els.breakdown) {
+        els.breakdown.innerHTML = '<div class="exclude-note">⚠️ 儲蓄快照載入失敗。前端唔會直連 IBKR。</div>';
+      }
+      setBanner("error", "無法讀取儲蓄快照。請用 HTTPS／本機 server 開啟。");
       showToast("儲蓄數據載入失敗");
       console.error(err);
     }
