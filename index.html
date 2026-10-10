@@ -4,40 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#F7F3EB" />
-  <meta name="description" content="小狗養成 · 儲蓄成長記" />
-  <title>小狗養成 · 儲蓄成長記</title>
+  <meta name="description" content="小狗養成 · 儲錢就大隻" />
+  <title>小狗養成</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700&family=Noto+Sans+TC:wght@400;500;700;900&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Noto+Sans+TC:wght@400;500;700;900&family=Nunito:wght@700;800&display=swap" rel="stylesheet" />
 </head>
 <body>
   <main class="shell home-shell">
     <header class="topbar">
-      <div class="brand">
-        <div class="brand-mark" aria-hidden="true">🐾</div>
-        <div>
-          <h1>小狗養成</h1>
-          <p class="tagline">儲得愈多 · 狗愈大隻</p>
-        </div>
-      </div>
+      <a class="brand brand-link" href="index.html">
+        <span class="brand-mark" aria-hidden="true">🐾</span>
+        <span class="brand-text">
+          <span class="brand-title">小狗養成</span>
+          <span class="tagline">儲錢 → 狗長大</span>
+        </span>
+      </a>
       <div class="top-right">
-        <nav class="site-nav" aria-label="主要導覽">
+        <nav class="site-nav" aria-label="導覽">
           <a href="index.html" class="active">養成</a>
-          <a href="portfolio.html">組合回報</a>
+          <a href="portfolio.html">組合</a>
         </nav>
-        <button type="button" class="icon-btn" id="btnMute" aria-label="靜音" title="音效（預設靜音）">🔇</button>
+        <button type="button" class="icon-btn" id="btnMute" aria-label="靜音">🔇</button>
       </div>
     </header>
 
-    <div class="meta-row">
-      <span class="chip chip-quiet" id="asOfLabel">載入中…</span>
-    </div>
+    <div id="statusBanner" class="banner" hidden></div>
 
-    <div class="banner loading" id="statusBanner">正在載入儲蓄快照…</div>
-
+    <!-- Hero: puppy + stage + % + milestones only -->
     <section class="card hero">
-      <div class="stage-pill" id="stageBadge">階段 1／5</div>
       <div class="scene" id="puppyStage" data-stage="0">
         <div class="fx" id="fxLayer" aria-hidden="true"></div>
         <div class="food-fly" id="foodFly" hidden aria-hidden="true">🍖</div>
@@ -45,98 +41,80 @@
           <img class="pup-img idle" id="puppyImg" src="assets/stages/stage-0.jpg" alt="新生小狗" width="240" height="240" draggable="false" />
           <div class="ground-shadow"></div>
         </div>
-        <h2 class="stage-title" id="stageName">新生小狗</h2>
-        <p class="stage-desc" id="stageDesc">啱啱出世嘅小狗 · 小小隻好得意</p>
-        <p class="stage-tip" id="stageTip">載入進度中…</p>
+        <p class="stage-pill" id="stageBadge">階段 1／5</p>
+        <h1 class="stage-title" id="stageName">新生小狗</h1>
+        <p class="hero-pct" id="progressPct">0%</p>
+        <p class="stage-tip" id="stageTip" hidden></p>
+        <p class="stage-desc" id="stageDesc" hidden></p>
       </div>
-    </section>
-
-    <section class="card progress-card">
-      <div class="section-head">
-        <div>
-          <h3 class="section-title">養成進度</h3>
-          <p class="section-sub">遊戲進度由 <strong>$0</strong> 起計 · 目標 $48,000</p>
-        </div>
-        <div class="pct-badge" id="progressPct">0%</div>
-      </div>
-
-      <p class="story-note" id="growthStory">
-        <strong>養成金額</strong>只計你之後新存入嘅錢。IB 戶口而家嘅結餘只作參考，<strong>暫唔計入</strong>小狗成長（下個月開始存錢先計）。
-      </p>
 
       <div class="milestone" aria-label="成長里程碑">
         <div class="milestone-track">
           <div class="milestone-fill" id="barFill"></div>
         </div>
         <ol class="milestone-nodes" id="milestoneNodes">
-          <li data-at="0" class="current"><span class="dot"></span><span class="lbl">新生<br>0%</span></li>
-          <li data-at="10"><span class="dot"></span><span class="lbl">小小<br>10%</span></li>
-          <li data-at="25"><span class="dot"></span><span class="lbl">成長<br>25%</span></li>
-          <li data-at="50"><span class="dot"></span><span class="lbl">少年<br>50%</span></li>
-          <li data-at="75"><span class="dot"></span><span class="lbl">成犬<br>75%</span></li>
+          <li data-at="0" class="current"><span class="dot"></span><span class="lbl">0%</span></li>
+          <li data-at="10"><span class="dot"></span><span class="lbl">10%</span></li>
+          <li data-at="25"><span class="dot"></span><span class="lbl">25%</span></li>
+          <li data-at="50"><span class="dot"></span><span class="lbl">50%</span></li>
+          <li data-at="75"><span class="dot"></span><span class="lbl">75%</span></li>
         </ol>
       </div>
-      <div id="barTrack" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden></div>
-      <svg hidden aria-hidden="true"><circle id="ringFg" /></svg>
 
-      <div class="money-grid">
-        <div class="money-card">
-          <span class="lbl">養成已計入</span>
-          <strong id="totalHkd">$0</strong>
-        </div>
-        <div class="money-card goal">
-          <span class="lbl">目標</span>
-          <strong id="goalHkd">$48,000</strong>
-        </div>
+      <div class="hero-money">
+        <span><span class="lbl">已計入</span> <strong id="totalHkd">$0</strong></span>
+        <span class="sep">·</span>
+        <span><span class="lbl">目標</span> <strong id="goalHkd">$48,000</strong></span>
       </div>
-      <div class="breakdown" id="breakdown">
-        <div class="skeleton"></div>
-        <div class="skeleton" style="width:70%"></div>
-      </div>
-      <p class="monthly" id="monthlyTip"></p>
 
-      <div class="action-block">
-        <p class="action-label">同小狗互動</p>
-        <nav class="action-row" aria-label="互動">
-          <button type="button" class="dock-btn feed" id="btnFeed">
-            <span class="dock-ico">🍖</span>
-            <span class="dock-txt">餵食</span>
-            <span class="dock-cd" id="feedCd" hidden></span>
-          </button>
-          <button type="button" class="dock-btn play" id="btnPlay">
-            <span class="dock-ico">🎾</span>
-            <span class="dock-txt">玩耍</span>
-            <span class="dock-cd" id="playCd" hidden></span>
-          </button>
-          <button type="button" class="dock-btn pet" id="btnPet">
-            <span class="dock-ico">✋</span>
-            <span class="dock-txt">摸摸</span>
-            <span class="dock-cd" id="petCd" hidden></span>
-          </button>
-        </nav>
-      </div>
+      <!-- hidden compat for app.js -->
+      <div id="barTrack" hidden role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+      <svg hidden aria-hidden="true"><circle id="ringFg"></circle></svg>
+      <div id="breakdown" hidden></div>
+      <p id="monthlyTip" hidden></p>
+      <span id="asOfLabel" hidden></span>
     </section>
 
-    <section class="card meters">
-      <h3 class="section-title">心情狀態 <small>玩樂用 · 唔影響成長階段</small></h3>
-      <div class="meter">
-        <div class="meter-label"><span>🍖 飽肚</span><span id="hungerVal">80</span></div>
-        <div class="meter-track"><div class="meter-fill hunger" id="hungerFill"></div></div>
+    <!-- Compact cream dock under hero -->
+    <nav class="cream-dock" aria-label="互動">
+      <button type="button" class="dock-btn feed" id="btnFeed">
+        <span class="dock-ico">🍖</span><span class="dock-txt">餵食</span>
+        <span class="dock-cd" id="feedCd" hidden></span>
+      </button>
+      <button type="button" class="dock-btn play" id="btnPlay">
+        <span class="dock-ico">🎾</span><span class="dock-txt">玩耍</span>
+        <span class="dock-cd" id="playCd" hidden></span>
+      </button>
+      <button type="button" class="dock-btn pet" id="btnPet">
+        <span class="dock-ico">✋</span><span class="dock-txt">摸摸</span>
+        <span class="dock-cd" id="petCd" hidden></span>
+      </button>
+    </nav>
+
+    <!-- Mood behind one disclosure -->
+    <details class="mood-disclosure">
+      <summary>心情</summary>
+      <div class="mood-row">
+        <div class="mood-item">
+          <span>飽肚</span>
+          <div class="meter-track"><div class="meter-fill hunger" id="hungerFill"></div></div>
+          <span class="mood-val" id="hungerVal">80</span>
+        </div>
+        <div class="mood-item">
+          <span>開心</span>
+          <div class="meter-track"><div class="meter-fill happy" id="happyFill"></div></div>
+          <span class="mood-val" id="happyVal">80</span>
+        </div>
+        <div class="mood-item">
+          <span>親密</span>
+          <div class="meter-track"><div class="meter-fill affection" id="affectionFill"></div></div>
+          <span class="mood-val" id="affectionVal">50</span>
+        </div>
       </div>
-      <div class="meter">
-        <div class="meter-label"><span>🎾 開心</span><span id="happyVal">80</span></div>
-        <div class="meter-track"><div class="meter-fill happy" id="happyFill"></div></div>
-      </div>
-      <div class="meter">
-        <div class="meter-label"><span>💕 親密度</span><span id="affectionVal">50</span></div>
-        <div class="meter-track"><div class="meter-fill affection" id="affectionFill"></div></div>
-      </div>
-    </section>
+    </details>
 
     <footer class="foot">
-      <p><a href="portfolio.html">睇組合回報 →</a></p>
-      <p class="foot-main">養成進度由 $0 起 · IB 現有結餘只係參考</p>
-      <p class="note">數據來自帳戶快照 · 本頁唔會直連券商</p>
+      <p class="note">養成由 $0 起計 · 帳戶結餘僅作參考</p>
     </footer>
   </main>
 

@@ -222,12 +222,19 @@
     els.stageName.textContent = stage.name;
     els.stageDesc.textContent = stage.desc;
 
-    if (pct >= 100) {
-      els.stageTip.textContent = "恭喜！目標已達成 🎉";
-    } else {
-      els.stageTip.textContent =
-        "再存 " + formatHkd(needHkd) + " 就升到下一階（" + nextPct + "%）";
+    if (els.stageTip) {
+      if (pct >= 100) {
+        els.stageTip.hidden = false;
+        els.stageTip.textContent = "目標達成";
+      } else if (needHkd > 0 && nextPct <= 100) {
+        // Keep tip element for logic but hide helper text by default (calm UI)
+        els.stageTip.hidden = true;
+        els.stageTip.textContent = "";
+      } else {
+        els.stageTip.hidden = true;
+      }
     }
+    if (els.stageDesc) els.stageDesc.hidden = true;
 
     const cash = Number(data.cashHkd) || 0;
     const pos = Number(data.positionsHkd) || 0;
@@ -242,20 +249,16 @@
         })
         .join("");
     }
-    els.breakdown.innerHTML =
-      `<div class="exclude-note">📌 IB 戶口而家約 ${formatHkd(ibTotal)}（僅參考）· <strong>唔計入養成進度</strong> · 養成由 $0 起，${SAVING_STARTS_NOTE}</div>` +
-      `<div class="pos muted-row"><span>IB 現金（唔計）</span><span>${formatHkd(cash)}</span></div>` +
-      `<div class="pos muted-row"><span>IB 持倉（唔計）</span><span>${formatHkd(pos)}</span></div>` +
-      posLines;
-
-    const monthly = Number(data.monthlyTargetHkd) || 0;
-    if (monthly > 0) {
-      const monthsLeft = Math.ceil(Math.max(0, goal - gameTotal) / monthly);
-      els.monthlyTip.textContent =
-        "每月目標 " + formatHkd(monthly) + " · 下個月開始計 · 照呢個節奏大約 " + monthsLeft + " 個月到目標";
-    } else {
-      els.monthlyTip.textContent = "";
+    // Breakdown kept in DOM for logic/debug but hidden in calm UI
+    if (els.breakdown) {
+      els.breakdown.innerHTML = "";
+      els.breakdown.hidden = true;
     }
+    if (els.monthlyTip) {
+      els.monthlyTip.textContent = "";
+      els.monthlyTip.hidden = true;
+    }
+    void ibTotal; void cash; void pos; void posLines;
   }
 
   function showToast(msg) {
@@ -414,20 +417,15 @@
     setRing(0);
     els.puppyImg.classList.add("idle");
 
-    setBanner("loading", "正在載入儲蓄快照…");
+    setBanner("", "");
     try {
       const data = await loadSnapshot();
       renderSavings(data);
       setBanner("", "");
     } catch (err) {
       els.stageName.textContent = "載入失敗";
-      els.stageDesc.textContent = "請重新整理頁面，或稍後再試";
-      els.stageTip.textContent = "無法顯示養成進度";
-      els.asOfLabel.textContent = "無數據";
-      if (els.breakdown) {
-        els.breakdown.innerHTML = '<div class="exclude-note">⚠️ 儲蓄快照載入失敗。前端唔會直連 IBKR。</div>';
-      }
-      setBanner("error", "無法讀取儲蓄快照。請重新整理頁面，或稍後再試。");
+      if (els.asOfLabel) els.asOfLabel.textContent = "";
+      setBanner("error", "暫時載入唔到，請稍後再試。");
       showToast("儲蓄數據載入失敗");
       console.error(err);
     }

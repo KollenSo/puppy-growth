@@ -4,124 +4,81 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#F7F3EB" />
-  <meta name="description" content="組合回報 · 小狗養成帳戶" />
-  <title>組合回報 · 小狗養成</title>
+  <meta name="description" content="組合回報" />
+  <title>組合 · 小狗養成</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700&family=Noto+Sans+TC:wght@400;500;700;900&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Noto+Sans+TC:wght@400;500;700;900&family=Nunito:wght@700;800&display=swap" rel="stylesheet" />
 </head>
 <body>
   <main class="shell portfolio-shell">
     <header class="topbar">
-      <div class="brand">
-        <div class="brand-mark" aria-hidden="true">📊</div>
-        <div>
-          <h1>組合回報</h1>
-          <p class="tagline">全倉市值 · 費用估算 · 目標進度</p>
-        </div>
-      </div>
-      <div class="top-right">
-        <nav class="site-nav" aria-label="主要導覽">
-          <a href="index.html">養成</a>
-          <a href="portfolio.html" class="active">組合回報</a>
-        </nav>
-      </div>
+      <a class="brand brand-link" href="index.html">
+        <span class="brand-mark" aria-hidden="true">🐾</span>
+        <span class="brand-text">
+          <span class="brand-title">組合</span>
+          <span class="tagline">全倉市值</span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="導覽">
+        <a href="index.html">養成</a>
+        <a href="portfolio.html" class="active">組合</a>
+      </nav>
     </header>
 
-    <div class="meta-row meta-row-demoted">
-      <span class="chip chip-quiet" id="asOfLabel">載入中…</span>
-      <span class="chip chip-quiet">費用為估算</span>
-    </div>
+    <div id="statusBanner" class="banner" hidden></div>
+    <span id="asOfLabel" hidden></span>
 
-    <div class="banner loading" id="statusBanner">正在載入組合快照…</div>
-
-    <section class="card section-gap">
-      <p class="hero-title">帳戶總值（市值）</p>
-      <p class="hero-sub">包含全部現金同持倉。</p>
+    <section class="card hero-portfolio">
+      <p class="hero-kicker">總市值</p>
       <div class="big-num" id="totalValue">—</div>
-      <div class="stat-grid">
-        <div class="stat">
-          <span class="lbl">現金</span>
-          <strong id="cashVal">—</strong>
-        </div>
-        <div class="stat accent">
-          <span class="lbl">持倉合計</span>
-          <strong id="posVal">—</strong>
-        </div>
-      </div>
-
-      <div class="fee-banner" id="feeCard" role="note">
-        <span class="fee-label">預估交易成本 · 非實際扣款</span>
-        <span class="fee-amt" id="feeVal">—</span>
-        <span class="fee-formula" id="feeFormula">以總市值估算：最少約 $8，或者大約總值嘅 0.08%（取較高嗰個）。只供參考。</span>
-      </div>
-
-      <div class="stat-grid">
-        <div class="stat accent">
-          <span class="lbl">扣費後淨額</span>
-          <strong id="netVal">—</strong>
-          <span class="sub">總市值減去預估費用</span>
-        </div>
-        <div class="stat">
-          <span class="lbl">費用拖累</span>
-          <strong id="feeDrag">—</strong>
-          <span class="sub">相對總市值</span>
-        </div>
-      </div>
+      <p class="quiet-split">
+        <span>現金 <strong id="cashVal">—</strong></span>
+        <span class="sep">·</span>
+        <span>持倉 <strong id="posVal">—</strong></span>
+      </p>
+      <p class="fee-quiet">預估費用 <strong id="feeVal">—</strong> · 扣費後 <strong id="netVal">—</strong></p>
+      <span id="feeFormula" hidden></span>
+      <span id="feeDrag" hidden></span>
     </section>
 
-    <section class="card section-gap">
-      <h3 class="section-title">持倉明細</h3>
-      <p class="hero-sub">帳戶快照 · 本頁唔會直連券商</p>
+    <section class="card">
+      <h2 class="section-title">持倉</h2>
       <div class="holdings-wrap">
         <table class="table">
           <thead>
             <tr>
               <th>項目</th>
               <th class="num">數量</th>
-              <th class="num">市值 HKD</th>
+              <th class="num">HKD</th>
             </tr>
           </thead>
           <tbody id="holdingsBody">
-            <tr><td colspan="3"><div class="skeleton"></div><div class="skeleton" style="width:55%"></div></td></tr>
+            <tr><td colspan="3" class="loading">…</td></tr>
           </tbody>
         </table>
       </div>
     </section>
 
-    <section class="card section-gap">
-      <h3 class="section-title">相對目標進度</h3>
-      <p class="hero-sub">快照<strong>冇買入成本</strong>，所以<strong>計唔到真實盈虧 %</strong>。以下係相對儲蓄目標。</p>
+    <section class="card">
       <div class="prog-head">
-        <p class="prog-sub" id="goalLine">目標 —</p>
+        <h2 class="section-title">目標進度</h2>
         <span class="pct" id="progressPct">—%</span>
       </div>
+      <p class="prog-sub" id="goalLine"></p>
       <div class="bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="barTrack">
         <div class="bar-fill" id="barFill"></div>
       </div>
-      <div class="stat-grid">
-        <div class="stat">
-          <span class="lbl">距離目標</span>
-          <strong id="gapVal">—</strong>
-        </div>
-        <div class="stat accent">
-          <span class="lbl">每月目標</span>
-          <strong id="monthlyVal">—</strong>
-          <span class="sub" id="monthsLeft"></span>
-        </div>
-      </div>
-      <div class="warn">
-        ⚠️ <strong>誠實說明：</strong>快照只有市值，冇買入成本。本頁<strong>唔會虛構</strong>組合回報 %。
-      </div>
-      <div class="ok-note">
-        ✅ 費用用簡單估算：最少約 $8，或總市值約 0.08%（取較高）。實際佣金可能唔同。
-      </div>
+      <p class="quiet-split">
+        <span>尚欠 <strong id="gapVal">—</strong></span>
+        <span class="sep">·</span>
+        <span>每月 <strong id="monthlyVal">—</strong> <span id="monthsLeft"></span></span>
+      </p>
     </section>
 
     <footer class="foot">
-      <p><a href="index.html">← 返回小狗養成</a></p>
-      <p class="note">帳戶快照數據 · 本頁唔會直連券商</p>
+      <p class="note">費用為估算 · 帳戶結餘僅作參考</p>
     </footer>
   </main>
 
@@ -135,12 +92,12 @@
     function formatHkd(n) {
       const v = Number(n);
       if (!Number.isFinite(v)) return "—";
-      return "$" + v.toLocaleString("en-HK", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      return "$" + v.toLocaleString("en-HK", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
     }
     function formatPct(n) {
       const v = Number(n);
       if (!Number.isFinite(v)) return "—";
-      return v.toFixed(2) + "%";
+      return v.toFixed(1) + "%";
     }
     function setBanner(type, msg) {
       const el = document.getElementById("statusBanner");
@@ -158,33 +115,21 @@
       const monthly = Number(data.monthlyTargetHkd) || 0;
       const pct = goal > 0 ? (total / goal) * 100 : 0;
       const fee = estimateFeeHkd(total);
-      const pctFee = total * 0.0008;
       const net = total - fee;
-      const drag = total > 0 ? (fee / total) * 100 : 0;
 
-      document.getElementById("asOfLabel").textContent = "截至 " + (data.asOf || "—");
+      document.getElementById("asOfLabel").textContent = data.asOf || "";
       document.getElementById("totalValue").textContent = formatHkd(total);
       document.getElementById("cashVal").textContent = formatHkd(cash);
       document.getElementById("posVal").textContent = formatHkd(posSum);
       document.getElementById("feeVal").textContent = formatHkd(fee);
-      document.getElementById("feeFormula").textContent =
-        "估算方式：最少約 $8，或者總市值約 0.08%（即 " + formatHkd(pctFee) + "）——取較高嗰個。唔係實際扣款。";
       document.getElementById("netVal").textContent = formatHkd(net);
-      document.getElementById("feeDrag").textContent = formatPct(drag);
 
       let rows = `<tr><td>現金</td><td class="num">—</td><td class="num">${formatHkd(cash)}</td></tr>`;
       const positions = Array.isArray(data.positions) ? data.positions : [];
-      if (!positions.length) {
-        rows += `<tr><td colspan="3" class="loading">未有持倉</td></tr>`;
-      } else {
-        for (const p of positions) {
-          const sym = p.symbol || "?";
-          const qty = p.qty != null ? Number(p.qty).toLocaleString("en-HK", { maximumFractionDigits: 6 }) : "—";
-          const usd = p.mktValueUsd != null
-            ? ` <span style="opacity:.6;font-size:.75rem;font-weight:600">(US$${Number(p.mktValueUsd).toFixed(2)})</span>`
-            : "";
-          rows += `<tr><td><strong>${sym}</strong>${usd}</td><td class="num">${qty}</td><td class="num">${formatHkd(p.mktValueHkd)}</td></tr>`;
-        }
+      for (const p of positions) {
+        const sym = p.symbol || "?";
+        const qty = p.qty != null ? Number(p.qty).toLocaleString("en-HK", { maximumFractionDigits: 4 }) : "—";
+        rows += `<tr><td>${sym}</td><td class="num">${qty}</td><td class="num">${formatHkd(p.mktValueHkd)}</td></tr>`;
       }
       rows += `<tr class="total"><td>合計</td><td class="num"></td><td class="num">${formatHkd(total)}</td></tr>`;
       document.getElementById("holdingsBody").innerHTML = rows;
@@ -197,7 +142,7 @@
       document.getElementById("monthlyVal").textContent = formatHkd(monthly);
       if (monthly > 0) {
         document.getElementById("monthsLeft").textContent =
-          "約 " + Math.ceil(Math.max(0, goal - total) / monthly) + " 個月";
+          "（約 " + Math.ceil(Math.max(0, goal - total) / monthly) + " 個月）";
       }
       setBanner("", "");
     }
@@ -206,10 +151,7 @@
       .then((r) => { if (!r.ok) throw new Error("fail"); return r.json(); })
       .then(render)
       .catch((err) => {
-        document.getElementById("asOfLabel").textContent = "載入失敗";
-        setBanner("error", "無法讀取儲蓄快照。請重新整理頁面，或稍後再試。");
-        document.getElementById("holdingsBody").innerHTML =
-          '<tr><td colspan="3" class="loading">未有數據</td></tr>';
+        setBanner("error", "暫時載入唔到，請稍後再試。");
         console.error(err);
       });
   })();
