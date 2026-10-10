@@ -1,0 +1,22 @@
+{
+  "asOf": "2026-10-09",
+  "currency": "HKD",
+  "cashHkd": 164.81,
+  "positionsHkd": 2076.61,
+  "totalApproxHkd": 2241.42,
+  "goalHkd": 48000.0,
+  "monthlyTargetHkd": 2000.0,
+  "progressPct": 4.67,
+  "positions": [
+    {
+      "symbol": "SPYM",
+      "qty": 2.8875,
+      "mktValueUsd": 264.61,
+      "mktValueHkd": 2076.61
+    }
+  ],
+  "source": "IBKR Flex read-only",
+  "note": "Approximate cash + open positions converted to HKD; not official NAV (EquitySummaryInBase not in query).",
+  "accountId": "U19879309",
+  "stale": false
+}
