@@ -3,21 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#fff7ef" />
+  <meta name="theme-color" content="#f7f1e8" />
   <meta name="description" content="組合回報 · 小狗養成帳戶" />
   <title>組合回報 · 小狗養成</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700&family=Noto+Sans+TC:wght@400;500;700;900&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <div class="bg" aria-hidden="true">
-    <span class="orb o1"></span>
-    <span class="orb o2"></span>
-    <span class="orb o3"></span>
-  </div>
-
   <main class="shell portfolio-shell">
     <header class="topbar">
       <div class="brand">
@@ -38,15 +32,15 @@
 
     <div class="trust-strip">
       <span class="trust-pill">🔒 前端唔連 IBKR</span>
-      <span class="trust-pill">📂 本地快照 JSON</span>
-      <span class="trust-pill">估算費用 · 非實際扣款</span>
+      <span class="trust-pill">📂 本地快照</span>
+      <span class="trust-pill">費用＝估算</span>
     </div>
 
     <div class="banner loading" id="statusBanner">正在載入組合快照…</div>
 
-    <section class="glass" id="summaryCard">
+    <section class="card">
       <p class="hero-title">帳戶總值（市值）</p>
-      <p class="hero-sub">用快照入面<strong>全部</strong>現金＋持倉計算。</p>
+      <p class="hero-sub">快照入面<strong>全部</strong>現金＋持倉。</p>
       <div class="big-num" id="totalValue">—</div>
       <div class="stat-grid">
         <div class="stat">
@@ -58,51 +52,51 @@
           <strong id="posVal">—</strong>
         </div>
       </div>
+
       <div class="fee-banner" id="feeCard" role="note">
-        <span class="fee-label">預估交易成本（估算 · 非實際扣款）</span>
+        <span class="fee-label">預估交易成本 · 非實際扣款</span>
         <span class="fee-amt" id="feeVal">—</span>
         <span class="fee-formula" id="feeFormula">公式：max(HKD 8, 總市值 × 0.08%) 單邊</span>
       </div>
+
       <div class="stat-grid">
         <div class="stat cool">
-          <span class="lbl">扣費後淨額（概念）</span>
+          <span class="lbl">扣費後淨額</span>
           <strong id="netVal">—</strong>
           <span class="sub">＝ 總市值 − 預估費用</span>
         </div>
         <div class="stat">
           <span class="lbl">費用拖累</span>
           <strong id="feeDrag">—</strong>
-          <span class="sub">相對總市值嘅 %</span>
+          <span class="sub">相對總市值 %</span>
         </div>
       </div>
     </section>
 
-    <section class="glass">
+    <section class="card">
       <h3 class="section-title">持倉明細</h3>
-      <p class="hero-sub">來自 <code>data/savings_snapshot.json</code></p>
+      <p class="hero-sub">data/savings_snapshot.json</p>
       <div class="holdings-wrap">
-        <table class="table" id="holdingsTable">
+        <table class="table">
           <thead>
             <tr>
               <th>項目</th>
               <th class="num">數量</th>
-              <th class="num">市值 (HKD)</th>
+              <th class="num">市值 HKD</th>
             </tr>
           </thead>
           <tbody id="holdingsBody">
-            <tr><td colspan="3"><div class="skeleton"></div><div class="skeleton" style="width:60%"></div></td></tr>
+            <tr><td colspan="3"><div class="skeleton"></div><div class="skeleton" style="width:55%"></div></td></tr>
           </tbody>
         </table>
       </div>
     </section>
 
-    <section class="glass">
+    <section class="card">
       <h3 class="section-title">相對目標進度</h3>
-      <p class="hero-sub">快照<strong>冇成本價</strong>，所以<strong>計唔到真實盈虧 %</strong>。以下係相對儲蓄目標嘅進度。</p>
-      <div class="prog-head" style="margin-bottom:10px">
-        <div>
-          <p class="prog-sub" id="goalLine">目標 —</p>
-        </div>
+      <p class="hero-sub">快照<strong>冇成本價</strong> → <strong>計唔到真實盈虧 %</strong>。以下係相對儲蓄目標。</p>
+      <div class="prog-head">
+        <p class="prog-sub" id="goalLine">目標 —</p>
         <span class="pct" id="progressPct">—%</span>
       </div>
       <div class="bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="barTrack">
@@ -120,24 +114,24 @@
         </div>
       </div>
       <div class="warn">
-        ⚠️ <strong>誠實說明：</strong>快照只有市值，冇買入成本（cost basis）。本頁<strong>唔會虛構</strong>「組合回報 %」。你見到嘅係總市值、預估費用、扣費後淨額，同埋相對 $48,000 目標進度。
+        ⚠️ <strong>誠實說明：</strong>快照只有市值，冇買入成本。本頁<strong>唔會虛構</strong>組合回報 %。
       </div>
       <div class="ok-note">
-        ✅ 費用估算：<strong>max(HKD 8, 名義金額 × 0.08%)</strong>（單邊）。只供參考，實際佣金／交易所費／FX 可能唔同。
+        ✅ 費用估算：<strong>max(HKD 8, 名義金額 × 0.08%)</strong>（單邊）。只供參考。
       </div>
     </section>
 
     <footer class="foot">
       <p><a href="index.html">← 返回小狗養成</a></p>
-      <p class="note">數據來源：Finance Manager IB 快照。前端唔連 IBKR。</p>
+      <p class="note">Finance Manager IB 快照 · 前端唔連 IBKR</p>
     </footer>
   </main>
 
   <script>
   (() => {
     "use strict";
-    function estimateFeeHkd(notionalHkd) {
-      const n = Math.max(0, Number(notionalHkd) || 0);
+    function estimateFeeHkd(n) {
+      n = Math.max(0, Number(n) || 0);
       return Math.max(8, n * 0.0008);
     }
     function formatHkd(n) {
@@ -158,18 +152,13 @@
       el.className = "banner " + type;
       el.textContent = msg;
     }
-    async function load() {
-      const res = await fetch("data/savings_snapshot.json", { cache: "no-store" });
-      if (!res.ok) throw new Error("snapshot load failed");
-      return res.json();
-    }
     function render(data) {
       const cash = Number(data.cashHkd) || 0;
       const posSum = Number(data.positionsHkd) || 0;
       const total = Number(data.totalApproxHkd) || cash + posSum;
       const goal = Number(data.goalHkd) || 48000;
       const monthly = Number(data.monthlyTargetHkd) || 0;
-      const pct = goal > 0 ? (total / goal) * 100 : (Number(data.progressPct) || 0);
+      const pct = goal > 0 ? (total / goal) * 100 : 0;
       const fee = estimateFeeHkd(total);
       const net = total - fee;
       const drag = total > 0 ? (fee / total) * 100 : 0;
@@ -184,7 +173,6 @@
       document.getElementById("netVal").textContent = formatHkd(net);
       document.getElementById("feeDrag").textContent = formatPct(drag);
 
-      const body = document.getElementById("holdingsBody");
       let rows = `<tr><td>現金 Cash</td><td class="num">—</td><td class="num">${formatHkd(cash)}</td></tr>`;
       const positions = Array.isArray(data.positions) ? data.positions : [];
       if (!positions.length) {
@@ -193,34 +181,34 @@
         for (const p of positions) {
           const sym = p.symbol || "?";
           const qty = p.qty != null ? Number(p.qty).toLocaleString("en-HK", { maximumFractionDigits: 6 }) : "—";
-          const mv = formatHkd(p.mktValueHkd);
           const usd = p.mktValueUsd != null
-            ? ` <span style="opacity:.65;font-size:.75rem;font-weight:600">(US$${Number(p.mktValueUsd).toFixed(2)})</span>`
+            ? ` <span style="opacity:.6;font-size:.75rem;font-weight:600">(US$${Number(p.mktValueUsd).toFixed(2)})</span>`
             : "";
-          rows += `<tr><td><strong>${sym}</strong>${usd}</td><td class="num">${qty}</td><td class="num">${mv}</td></tr>`;
+          rows += `<tr><td><strong>${sym}</strong>${usd}</td><td class="num">${qty}</td><td class="num">${formatHkd(p.mktValueHkd)}</td></tr>`;
         }
       }
       rows += `<tr class="total"><td>合計</td><td class="num"></td><td class="num">${formatHkd(total)}</td></tr>`;
-      body.innerHTML = rows;
+      document.getElementById("holdingsBody").innerHTML = rows;
 
-      document.getElementById("goalLine").textContent = "目標 " + formatHkd(goal) + " · 而家市值進度";
+      document.getElementById("goalLine").textContent = "目標 " + formatHkd(goal);
       document.getElementById("progressPct").textContent = formatPct(pct);
       document.getElementById("barFill").style.width = Math.min(100, pct) + "%";
       document.getElementById("barTrack").setAttribute("aria-valuenow", String(Math.round(pct)));
       document.getElementById("gapVal").textContent = formatHkd(Math.max(0, goal - total));
       document.getElementById("monthlyVal").textContent = formatHkd(monthly);
       if (monthly > 0) {
-        const months = Math.ceil(Math.max(0, goal - total) / monthly);
-        document.getElementById("monthsLeft").textContent = "照呢個節奏大約仲要 " + months + " 個月";
+        document.getElementById("monthsLeft").textContent =
+          "約 " + Math.ceil(Math.max(0, goal - total) / monthly) + " 個月";
       }
       setBanner("", "");
     }
 
-    load()
+    fetch("data/savings_snapshot.json", { cache: "no-store" })
+      .then((r) => { if (!r.ok) throw new Error("fail"); return r.json(); })
       .then(render)
       .catch((err) => {
         document.getElementById("asOfLabel").textContent = "載入失敗";
-        setBanner("error", "無法讀取儲蓄快照。請確認 data/savings_snapshot.json 可經 HTTPS 開啟。");
+        setBanner("error", "無法讀取儲蓄快照。請確認 data/savings_snapshot.json。");
         document.getElementById("holdingsBody").innerHTML =
           '<tr><td colspan="3" class="loading">未有數據</td></tr>';
         console.error(err);

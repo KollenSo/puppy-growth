@@ -3,21 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#fff7ef" />
+  <meta name="theme-color" content="#f7f1e8" />
   <meta name="description" content="小狗養成 · 儲蓄成長記" />
   <title>小狗養成 · 儲蓄成長記</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Noto+Sans+TC:wght@400;500;700;900&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <div class="bg" aria-hidden="true">
-    <span class="orb o1"></span>
-    <span class="orb o2"></span>
-    <span class="orb o3"></span>
-  </div>
-
   <main class="shell">
     <header class="topbar">
       <div class="brand">
@@ -37,7 +31,7 @@
       </div>
     </header>
 
-    <div class="trust-strip" aria-label="信任提示">
+    <div class="trust-strip">
       <span class="trust-pill">🔒 前端唔連 IBKR</span>
       <span class="trust-pill">🎯 目標 $48,000</span>
       <span class="trust-pill">🌱 養成由 $0 起計</span>
@@ -45,13 +39,13 @@
 
     <div class="banner loading" id="statusBanner">正在載入儲蓄快照…</div>
 
-    <section class="hero glass">
+    <section class="card hero">
       <div class="stage-pill" id="stageBadge">階段 1／5</div>
-      <div class="scene" id="puppyStage" data-stage="0" data-anim="">
+      <div class="scene" id="puppyStage" data-stage="0">
         <div class="fx" id="fxLayer" aria-hidden="true"></div>
         <div class="food-fly" id="foodFly" hidden aria-hidden="true">🍖</div>
         <div class="pup-frame">
-          <img class="pup-img idle" id="puppyImg" src="assets/stages/stage-0.jpg" alt="新生小狗" width="220" height="220" draggable="false" />
+          <img class="pup-img idle" id="puppyImg" src="assets/stages/stage-0.jpg" alt="新生小狗" width="260" height="260" draggable="false" />
           <div class="ground-shadow"></div>
         </div>
         <h2 class="stage-title" id="stageName">新生小狗</h2>
@@ -60,27 +54,31 @@
       </div>
     </section>
 
-    <section class="progress glass">
-      <div class="prog-head">
+    <section class="card progress-card">
+      <div class="section-head">
         <div>
-          <h3>養成進度</h3>
-          <p class="prog-sub">目標 $48,000 · 由 $0 開始計（IB 現有結餘暫唔計）</p>
+          <h3 class="section-title">養成進度</h3>
+          <p class="section-sub">目標 $48,000 · 由 $0 開始計</p>
         </div>
-        <div class="ring-wrap" aria-hidden="true">
-          <svg class="ring" viewBox="0 0 72 72">
-            <circle class="ring-bg" cx="36" cy="36" r="30" />
-            <circle class="ring-fg" id="ringFg" cx="36" cy="36" r="30" />
-          </svg>
-          <span class="ring-pct" id="progressPct">0%</span>
-        </div>
+        <div class="pct-badge" id="progressPct">0%</div>
       </div>
-      <div class="bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="barTrack">
-        <div class="bar-fill" id="barFill"></div>
-        <div class="bar-markers">
-          <span style="--p:10%"></span><span style="--p:25%"></span>
-          <span style="--p:50%"></span><span style="--p:75%"></span>
+
+      <div class="milestone" aria-label="成長里程碑">
+        <div class="milestone-track">
+          <div class="milestone-fill" id="barFill"></div>
         </div>
+        <ol class="milestone-nodes" id="milestoneNodes">
+          <li data-at="0" class="current"><span class="dot"></span><span class="lbl">新生<br>0%</span></li>
+          <li data-at="10"><span class="dot"></span><span class="lbl">小小<br>10%</span></li>
+          <li data-at="25"><span class="dot"></span><span class="lbl">成長<br>25%</span></li>
+          <li data-at="50"><span class="dot"></span><span class="lbl">少年<br>50%</span></li>
+          <li data-at="75"><span class="dot"></span><span class="lbl">成犬<br>75%</span></li>
+        </ol>
       </div>
+      <!-- keep ids for app.js ring/barTrack compatibility (hidden) -->
+      <div id="barTrack" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden></div>
+      <svg hidden aria-hidden="true"><circle id="ringFg" /></svg>
+
       <div class="money-grid">
         <div class="money-card">
           <span class="lbl">養成已計入</span>
@@ -98,8 +96,8 @@
       <p class="monthly" id="monthlyTip"></p>
     </section>
 
-    <section class="meters glass">
-      <h3>心情狀態 <small>玩樂用 · 唔影響成長階段</small></h3>
+    <section class="card meters">
+      <h3 class="section-title">心情狀態 <small>玩樂用 · 唔影響成長階段</small></h3>
       <div class="meter">
         <div class="meter-label"><span>🍖 飽肚</span><span id="hungerVal">80</span></div>
         <div class="meter-track"><div class="meter-fill hunger" id="hungerFill"></div></div>
@@ -133,9 +131,9 @@
     </nav>
 
     <footer class="foot">
-      <p><a href="portfolio.html">📊 睇組合回報 →</a></p>
+      <p><a href="portfolio.html">睇組合回報 →</a></p>
       <p>成長只跟養成已計入金額 · IB 現有結餘暫唔計</p>
-      <p class="note">數據：Finance Manager IB 快照（前端唔連 IBKR）。更新後複製去 <code>data/savings_snapshot.json</code></p>
+      <p class="note">數據：Finance Manager IB 快照（前端唔連 IBKR）</p>
     </footer>
   </main>
 

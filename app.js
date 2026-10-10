@@ -176,7 +176,22 @@
     setTimeout(done, 180);
   }
 
+
+  function updateMilestones(pct) {
+    const nodes = document.querySelectorAll("#milestoneNodes li");
+    if (!nodes.length) return;
+    const thresholds = [0, 10, 25, 50, 75];
+    nodes.forEach((li, i) => {
+      li.classList.remove("done", "current");
+      const at = Number(li.getAttribute("data-at"));
+      const nextAt = i + 1 < thresholds.length ? thresholds[i + 1] : 100;
+      if (pct >= nextAt) li.classList.add("done");
+      else if (pct >= at) li.classList.add("current");
+    });
+  }
+
   function setRing(pct) {
+    if (!els.ringFg || !els.ringFg.style) return;
     const p = Math.min(100, Math.max(0, pct));
     const offset = RING * (1 - p / 100);
     els.ringFg.style.strokeDasharray = String(RING);
@@ -195,8 +210,9 @@
     els.asOfLabel.textContent = "截至 " + (data.asOf || "—");
     els.progressPct.textContent = (pct < 10 ? pct.toFixed(1) : pct.toFixed(0)) + "%";
     setRing(pct);
-    els.barFill.style.width = Math.min(100, pct) + "%";
-    els.barTrack.setAttribute("aria-valuenow", String(Math.round(pct)));
+    if (els.barFill) els.barFill.style.width = Math.min(100, pct) + "%";
+    if (els.barTrack) els.barTrack.setAttribute("aria-valuenow", String(Math.round(pct)));
+    updateMilestones(pct);
     els.totalHkd.textContent = formatHkd(gameTotal);
     els.goalHkd.textContent = formatHkd(goal);
 
