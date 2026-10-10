@@ -55,6 +55,7 @@
     toast: $("toast"),
     btnMute: $("btnMute"),
     statusBanner: $("statusBanner"),
+    moodSummary: $("moodSummary"),
   };
 
   let meters = loadMeters();
@@ -139,12 +140,18 @@
   }
 
   function renderMeters() {
-    els.hungerVal.textContent = Math.round(meters.hunger);
-    els.happyVal.textContent = Math.round(meters.happy);
-    els.affectionVal.textContent = Math.round(meters.affection);
-    els.hungerFill.style.width = meters.hunger + "%";
-    els.happyFill.style.width = meters.happy + "%";
-    els.affectionFill.style.width = meters.affection + "%";
+    const h = Math.round(meters.hunger);
+    const y = Math.round(meters.happy);
+    const a = Math.round(meters.affection);
+    if (els.hungerVal) els.hungerVal.textContent = h;
+    if (els.happyVal) els.happyVal.textContent = y;
+    if (els.affectionVal) els.affectionVal.textContent = a;
+    if (els.hungerFill) els.hungerFill.style.width = h + "%";
+    if (els.happyFill) els.happyFill.style.width = y + "%";
+    if (els.affectionFill) els.affectionFill.style.width = a + "%";
+    if (els.moodSummary) {
+      els.moodSummary.textContent = "飽 " + h + " · 開 " + y + " · 親 " + a;
+    }
   }
 
 

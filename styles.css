@@ -671,3 +671,57 @@ h1 {
   .cream-dock .dock-btn { min-height: 64px; }
   .card, .glass { margin-bottom: 32px; padding: 22px 18px; }
 }
+
+/* Critiquito leftover fixes */
+.cream-dock .dock-btn.play {
+  background: var(--gold-soft);
+  border-color: rgba(212, 163, 115, 0.55);
+  color: var(--ink);
+}
+.cream-dock .dock-btn.play:active:not(:disabled) {
+  background: #E8C9A0;
+}
+
+.foot .note {
+  color: var(--ink-soft); /* #5C574E on #F7F3EB ≈ ≥4.5:1 */
+  font-weight: 600;
+  font-size: 0.78rem;
+}
+
+.brand-mark {
+  background: rgba(224, 122, 95, 0.16);
+  border-color: rgba(224, 122, 95, 0.35);
+  color: var(--coral-deep);
+}
+
+.portfolio-shell .brand-mark {
+  background: var(--gold-soft);
+  border-color: rgba(212, 163, 115, 0.5);
+  color: var(--ink);
+}
+
+.mood-disclosure > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+}
+.mood-sum-label { color: var(--ink); font-weight: 700; }
+.mood-sum-vals {
+  flex: 1;
+  text-align: right;
+  font-family: var(--font-num);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.mood-disclosure[open] .mood-sum-vals { display: none; }
+.mood-disclosure > summary::after {
+  content: "▾";
+  color: var(--ink-faint);
+  font-size: 0.75rem;
+  margin-left: 4px;
+}
+.mood-disclosure[open] > summary::after { content: "▴"; }
