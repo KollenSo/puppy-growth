@@ -243,7 +243,7 @@
         .join("");
     }
     els.breakdown.innerHTML =
-      `<div class="exclude-note">📌 IB 戶口約 ${formatHkd(ibTotal)}（參考）· <strong>暫唔計入養成</strong> · ${SAVING_STARTS_NOTE}</div>` +
+      `<div class="exclude-note">📌 IB 戶口而家約 ${formatHkd(ibTotal)}（僅參考）· <strong>唔計入養成進度</strong> · 養成由 $0 起，${SAVING_STARTS_NOTE}</div>` +
       `<div class="pos muted-row"><span>IB 現金（唔計）</span><span>${formatHkd(cash)}</span></div>` +
       `<div class="pos muted-row"><span>IB 持倉（唔計）</span><span>${formatHkd(pos)}</span></div>` +
       posLines;
@@ -421,13 +421,13 @@
       setBanner("", "");
     } catch (err) {
       els.stageName.textContent = "載入失敗";
-      els.stageDesc.textContent = "請確認 data/savings_snapshot.json 可開啟";
+      els.stageDesc.textContent = "請重新整理頁面，或稍後再試";
       els.stageTip.textContent = "無法顯示養成進度";
       els.asOfLabel.textContent = "無數據";
       if (els.breakdown) {
         els.breakdown.innerHTML = '<div class="exclude-note">⚠️ 儲蓄快照載入失敗。前端唔會直連 IBKR。</div>';
       }
-      setBanner("error", "無法讀取儲蓄快照。請用 HTTPS／本機 server 開啟。");
+      setBanner("error", "無法讀取儲蓄快照。請重新整理頁面，或稍後再試。");
       showToast("儲蓄數據載入失敗");
       console.error(err);
     }

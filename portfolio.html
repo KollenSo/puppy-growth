@@ -26,28 +26,26 @@
           <a href="index.html">養成</a>
           <a href="portfolio.html" class="active">組合回報</a>
         </nav>
-        <div class="chip" id="asOfLabel">載入中…</div>
       </div>
     </header>
 
-    <div class="trust-strip">
-      <span class="trust-pill">🔒 前端唔連 IBKR</span>
-      <span class="trust-pill">📂 本地快照</span>
-      <span class="trust-pill">費用＝估算</span>
+    <div class="meta-row meta-row-demoted">
+      <span class="chip chip-quiet" id="asOfLabel">載入中…</span>
+      <span class="chip chip-quiet">費用為估算</span>
     </div>
 
     <div class="banner loading" id="statusBanner">正在載入組合快照…</div>
 
-    <section class="card">
+    <section class="card section-gap">
       <p class="hero-title">帳戶總值（市值）</p>
-      <p class="hero-sub">快照入面<strong>全部</strong>現金＋持倉。</p>
+      <p class="hero-sub">包含全部現金同持倉。</p>
       <div class="big-num" id="totalValue">—</div>
       <div class="stat-grid">
         <div class="stat">
           <span class="lbl">現金</span>
           <strong id="cashVal">—</strong>
         </div>
-        <div class="stat cool">
+        <div class="stat accent">
           <span class="lbl">持倉合計</span>
           <strong id="posVal">—</strong>
         </div>
@@ -56,26 +54,26 @@
       <div class="fee-banner" id="feeCard" role="note">
         <span class="fee-label">預估交易成本 · 非實際扣款</span>
         <span class="fee-amt" id="feeVal">—</span>
-        <span class="fee-formula" id="feeFormula">公式：max(HKD 8, 總市值 × 0.08%) 單邊</span>
+        <span class="fee-formula" id="feeFormula">以總市值估算：最少約 $8，或者大約總值嘅 0.08%（取較高嗰個）。只供參考。</span>
       </div>
 
       <div class="stat-grid">
-        <div class="stat cool">
+        <div class="stat accent">
           <span class="lbl">扣費後淨額</span>
           <strong id="netVal">—</strong>
-          <span class="sub">＝ 總市值 − 預估費用</span>
+          <span class="sub">總市值減去預估費用</span>
         </div>
         <div class="stat">
           <span class="lbl">費用拖累</span>
           <strong id="feeDrag">—</strong>
-          <span class="sub">相對總市值 %</span>
+          <span class="sub">相對總市值</span>
         </div>
       </div>
     </section>
 
-    <section class="card">
+    <section class="card section-gap">
       <h3 class="section-title">持倉明細</h3>
-      <p class="hero-sub">data/savings_snapshot.json</p>
+      <p class="hero-sub">帳戶快照 · 本頁唔會直連券商</p>
       <div class="holdings-wrap">
         <table class="table">
           <thead>
@@ -92,9 +90,9 @@
       </div>
     </section>
 
-    <section class="card">
+    <section class="card section-gap">
       <h3 class="section-title">相對目標進度</h3>
-      <p class="hero-sub">快照<strong>冇成本價</strong> → <strong>計唔到真實盈虧 %</strong>。以下係相對儲蓄目標。</p>
+      <p class="hero-sub">快照<strong>冇買入成本</strong>，所以<strong>計唔到真實盈虧 %</strong>。以下係相對儲蓄目標。</p>
       <div class="prog-head">
         <p class="prog-sub" id="goalLine">目標 —</p>
         <span class="pct" id="progressPct">—%</span>
@@ -107,7 +105,7 @@
           <span class="lbl">距離目標</span>
           <strong id="gapVal">—</strong>
         </div>
-        <div class="stat cool">
+        <div class="stat accent">
           <span class="lbl">每月目標</span>
           <strong id="monthlyVal">—</strong>
           <span class="sub" id="monthsLeft"></span>
@@ -117,13 +115,13 @@
         ⚠️ <strong>誠實說明：</strong>快照只有市值，冇買入成本。本頁<strong>唔會虛構</strong>組合回報 %。
       </div>
       <div class="ok-note">
-        ✅ 費用估算：<strong>max(HKD 8, 名義金額 × 0.08%)</strong>（單邊）。只供參考。
+        ✅ 費用用簡單估算：最少約 $8，或總市值約 0.08%（取較高）。實際佣金可能唔同。
       </div>
     </section>
 
     <footer class="foot">
       <p><a href="index.html">← 返回小狗養成</a></p>
-      <p class="note">Finance Manager IB 快照 · 前端唔連 IBKR</p>
+      <p class="note">帳戶快照數據 · 本頁唔會直連券商</p>
     </footer>
   </main>
 
@@ -160,6 +158,7 @@
       const monthly = Number(data.monthlyTargetHkd) || 0;
       const pct = goal > 0 ? (total / goal) * 100 : 0;
       const fee = estimateFeeHkd(total);
+      const pctFee = total * 0.0008;
       const net = total - fee;
       const drag = total > 0 ? (fee / total) * 100 : 0;
 
@@ -169,11 +168,11 @@
       document.getElementById("posVal").textContent = formatHkd(posSum);
       document.getElementById("feeVal").textContent = formatHkd(fee);
       document.getElementById("feeFormula").textContent =
-        "公式：max( $8 , 總市值 × 0.08% ) = max( $8 , " + formatHkd(total * 0.0008) + " ) · 單邊估算";
+        "估算方式：最少約 $8，或者總市值約 0.08%（即 " + formatHkd(pctFee) + "）——取較高嗰個。唔係實際扣款。";
       document.getElementById("netVal").textContent = formatHkd(net);
       document.getElementById("feeDrag").textContent = formatPct(drag);
 
-      let rows = `<tr><td>現金 Cash</td><td class="num">—</td><td class="num">${formatHkd(cash)}</td></tr>`;
+      let rows = `<tr><td>現金</td><td class="num">—</td><td class="num">${formatHkd(cash)}</td></tr>`;
       const positions = Array.isArray(data.positions) ? data.positions : [];
       if (!positions.length) {
         rows += `<tr><td colspan="3" class="loading">未有持倉</td></tr>`;
@@ -208,7 +207,7 @@
       .then(render)
       .catch((err) => {
         document.getElementById("asOfLabel").textContent = "載入失敗";
-        setBanner("error", "無法讀取儲蓄快照。請確認 data/savings_snapshot.json。");
+        setBanner("error", "無法讀取儲蓄快照。請重新整理頁面，或稍後再試。");
         document.getElementById("holdingsBody").innerHTML =
           '<tr><td colspan="3" class="loading">未有數據</td></tr>';
         console.error(err);

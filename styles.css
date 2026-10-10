@@ -23,7 +23,7 @@
   --r-card: 16px;
   --r-btn: 12px;
   --r-pill: 999px;
-  --dock-h: 108px;
+  --dock-h: 0px;
   --max: 640px;
   --max-portfolio: 880px;
   --font: "Noto Sans TC", system-ui, sans-serif;
@@ -51,9 +51,12 @@ body.shake { animation: shake .36s var(--ease); }
   width: min(var(--max), 100%);
   margin: 0 auto;
   padding: calc(var(--space) * 4) calc(var(--space) * 4)
-    calc(var(--dock-h) + env(safe-area-inset-bottom, 0px) + 12px);
+    calc(var(--space) * 8 + env(safe-area-inset-bottom, 0px));
   min-height: 100dvh;
   position: relative; z-index: 1;
+}
+.shell.home-shell {
+  padding-bottom: calc(var(--space) * 8 + env(safe-area-inset-bottom, 0px));
 }
 .shell.portfolio-shell {
   width: min(var(--max-portfolio), 100%);
@@ -67,8 +70,8 @@ body.shake { animation: shake .36s var(--ease); }
 }
 .brand { display: flex; gap: calc(var(--space) * 3); align-items: center; min-width: 0; }
 .brand-mark {
-  width: 48px; height: 48px; border-radius: var(--r-btn);
-  display: grid; place-items: center; font-size: 22px;
+  width: 36px; height: 36px; border-radius: 10px;
+  display: grid; place-items: center; font-size: 16px;
   background: var(--bg-elevated); border: 1px solid var(--border); box-shadow: var(--shadow-card);
 }
 h1 {
@@ -331,6 +334,7 @@ h1 {
   opacity: 0.92;
   background: var(--bg-muted);
   box-shadow: none;
+  margin-bottom: calc(var(--space) * 3);
 }
 .meters .section-title, .meters h3.section-title { font-size: 0.95rem; color: var(--ink-soft); }
 .meters h3 small, .meters .section-title small {
@@ -350,53 +354,81 @@ h1 {
 .meter-fill.happy { background: var(--success); }
 .meter-fill.affection { background: var(--gold); }
 
-/* Dock — tight to content, no huge empty band */
-.dock {
-  position: fixed; left: 50%; bottom: 0; transform: translateX(-50%);
-  width: min(var(--max), 100%);
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: calc(var(--space) * 2);
-  padding: 8px 16px calc(10px + env(safe-area-inset-bottom, 0px));
-  background: rgba(247, 243, 235, 0.94);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+/* Actions integrated in progress card */
+.action-block {
+  margin-top: calc(var(--space) * 4);
+  padding-top: calc(var(--space) * 4);
   border-top: 1px solid var(--border);
-  z-index: 20;
+}
+.action-label {
+  font-size: 0.72rem; font-weight: 800; color: var(--ink-faint);
+  letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 10px;
+}
+.action-row {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: calc(var(--space) * 2);
 }
 .dock-btn {
   appearance: none; border: none; cursor: pointer;
-  min-height: 88px; border-radius: var(--r-btn);
+  min-height: 84px; border-radius: var(--r-btn);
   background: var(--coral); color: #fff;
-  box-shadow: 0 6px 16px rgba(196, 93, 69, 0.28);
+  box-shadow: 0 4px 12px rgba(196, 93, 69, 0.22);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 2px; font-family: var(--font-display);
   position: relative; touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
   transition: transform .12s var(--ease), background .15s;
 }
-.dock-btn.play { background: var(--success); box-shadow: 0 6px 16px rgba(107,143,113,.28); }
-.dock-btn.pet { background: var(--ink); box-shadow: 0 6px 16px rgba(44,42,38,.2); }
+.dock-btn.play { background: var(--success); box-shadow: 0 4px 12px rgba(107,143,113,.22); }
+.dock-btn.pet { background: var(--ink); box-shadow: 0 4px 12px rgba(44,42,38,.16); }
 .dock-btn:active:not(:disabled) { transform: scale(.96); }
 .dock-btn:disabled { opacity: .45; cursor: not-allowed; }
-.dock-ico { font-size: 1.85rem; line-height: 1; }
-.dock-txt { font-size: 0.9rem; font-weight: 800; }
+.dock-ico { font-size: 1.75rem; line-height: 1; }
+.dock-txt { font-size: 0.88rem; font-weight: 800; }
 .dock-cd {
   position: absolute; bottom: 6px; font-size: 0.66rem; font-weight: 700;
   font-family: var(--font-num); color: rgba(255,255,255,.85);
 }
+.story-note {
+  font-size: 0.82rem; line-height: 1.5; font-weight: 600;
+  color: var(--ink-soft); background: var(--bg-muted);
+  border: 1px solid var(--border); border-radius: var(--r-card);
+  padding: 12px 14px; margin-bottom: 16px;
+}
+.meta-row {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px;
+}
+.meta-row-demoted { opacity: 0.85; margin-bottom: 12px; }
+.chip-quiet {
+  font-size: 0.64rem; font-weight: 600; color: var(--ink-faint);
+  background: transparent; border-color: var(--border); box-shadow: none;
+  padding: 5px 9px;
+}
+.section-gap { margin-bottom: calc(var(--space) * 4); }
+.stat.accent {
+  background: var(--bg-elevated);
+  border-color: rgba(212,163,115,.4);
+}
+.stat.cool { /* legacy alias — cream/gold only, never blue */
+  background: var(--bg-elevated);
+  border-color: rgba(212,163,115,.35);
+}
+
 
 .foot {
-  text-align: center; font-size: 0.72rem; color: var(--ink-faint);
-  line-height: 1.55; padding: 4px 4px 8px; font-weight: 500;
+  text-align: center; font-size: 0.78rem; color: var(--ink-soft);
+  line-height: 1.55; padding: 12px 4px 16px; font-weight: 600;
+  border-top: 1px solid var(--border); margin-top: 4px;
 }
 .foot a { color: var(--coral-deep); font-weight: 800; text-decoration: none; }
-.foot .note { margin-top: 6px; }
+.foot .foot-main { color: var(--ink); font-weight: 700; margin-top: 6px; }
+.foot .note { margin-top: 6px; color: var(--ink-faint); font-weight: 500; }
 .foot code {
   font-size: 0.64rem; background: var(--bg-elevated); border: 1px solid var(--border);
   padding: 2px 6px; border-radius: 5px; word-break: break-all;
 }
 
 .toast {
-  position: fixed; left: 50%; bottom: calc(var(--dock-h) + 4px);
+  position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px));
   transform: translateX(-50%) translateY(12px);
   background: var(--ink); color: var(--bg-elevated);
   padding: 12px 18px; border-radius: var(--r-pill);
@@ -498,7 +530,6 @@ h1 {
   h1 { font-size: 1.15rem; }
   .pup-frame { height: 220px; }
   .scene { min-height: 250px; }
-  .dock-btn { min-height: 80px; }
-  --dock-h: 100px;
+  .dock-btn { min-height: 76px; }
   .big-num { font-size: 1.85rem; }
 }

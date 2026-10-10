@@ -9,10 +9,10 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Noto+Sans+TC:wght@400;500;700;900&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700&family=Noto+Sans+TC:wght@400;500;700;900&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <main class="shell">
+  <main class="shell home-shell">
     <header class="topbar">
       <div class="brand">
         <div class="brand-mark" aria-hidden="true">🐾</div>
@@ -27,14 +27,11 @@
           <a href="portfolio.html">組合回報</a>
         </nav>
         <button type="button" class="icon-btn" id="btnMute" aria-label="靜音" title="音效（預設靜音）">🔇</button>
-        <div class="chip" id="asOfLabel">載入中…</div>
       </div>
     </header>
 
-    <div class="trust-strip">
-      <span class="trust-pill">🔒 前端唔連 IBKR</span>
-      <span class="trust-pill">🎯 目標 $48,000</span>
-      <span class="trust-pill">🌱 養成由 $0 起計</span>
+    <div class="meta-row">
+      <span class="chip chip-quiet" id="asOfLabel">載入中…</span>
     </div>
 
     <div class="banner loading" id="statusBanner">正在載入儲蓄快照…</div>
@@ -45,7 +42,7 @@
         <div class="fx" id="fxLayer" aria-hidden="true"></div>
         <div class="food-fly" id="foodFly" hidden aria-hidden="true">🍖</div>
         <div class="pup-frame">
-          <img class="pup-img idle" id="puppyImg" src="assets/stages/stage-0.jpg" alt="新生小狗" width="260" height="260" draggable="false" />
+          <img class="pup-img idle" id="puppyImg" src="assets/stages/stage-0.jpg" alt="新生小狗" width="240" height="240" draggable="false" />
           <div class="ground-shadow"></div>
         </div>
         <h2 class="stage-title" id="stageName">新生小狗</h2>
@@ -58,10 +55,14 @@
       <div class="section-head">
         <div>
           <h3 class="section-title">養成進度</h3>
-          <p class="section-sub">目標 $48,000 · 由 $0 開始計</p>
+          <p class="section-sub">遊戲進度由 <strong>$0</strong> 起計 · 目標 $48,000</p>
         </div>
         <div class="pct-badge" id="progressPct">0%</div>
       </div>
+
+      <p class="story-note" id="growthStory">
+        <strong>養成金額</strong>只計你之後新存入嘅錢。IB 戶口而家嘅結餘只作參考，<strong>暫唔計入</strong>小狗成長（下個月開始存錢先計）。
+      </p>
 
       <div class="milestone" aria-label="成長里程碑">
         <div class="milestone-track">
@@ -75,7 +76,6 @@
           <li data-at="75"><span class="dot"></span><span class="lbl">成犬<br>75%</span></li>
         </ol>
       </div>
-      <!-- keep ids for app.js ring/barTrack compatibility (hidden) -->
       <div id="barTrack" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden></div>
       <svg hidden aria-hidden="true"><circle id="ringFg" /></svg>
 
@@ -94,6 +94,27 @@
         <div class="skeleton" style="width:70%"></div>
       </div>
       <p class="monthly" id="monthlyTip"></p>
+
+      <div class="action-block">
+        <p class="action-label">同小狗互動</p>
+        <nav class="action-row" aria-label="互動">
+          <button type="button" class="dock-btn feed" id="btnFeed">
+            <span class="dock-ico">🍖</span>
+            <span class="dock-txt">餵食</span>
+            <span class="dock-cd" id="feedCd" hidden></span>
+          </button>
+          <button type="button" class="dock-btn play" id="btnPlay">
+            <span class="dock-ico">🎾</span>
+            <span class="dock-txt">玩耍</span>
+            <span class="dock-cd" id="playCd" hidden></span>
+          </button>
+          <button type="button" class="dock-btn pet" id="btnPet">
+            <span class="dock-ico">✋</span>
+            <span class="dock-txt">摸摸</span>
+            <span class="dock-cd" id="petCd" hidden></span>
+          </button>
+        </nav>
+      </div>
     </section>
 
     <section class="card meters">
@@ -112,28 +133,10 @@
       </div>
     </section>
 
-    <nav class="dock" aria-label="互動">
-      <button type="button" class="dock-btn feed" id="btnFeed">
-        <span class="dock-ico">🍖</span>
-        <span class="dock-txt">餵食</span>
-        <span class="dock-cd" id="feedCd" hidden></span>
-      </button>
-      <button type="button" class="dock-btn play" id="btnPlay">
-        <span class="dock-ico">🎾</span>
-        <span class="dock-txt">玩耍</span>
-        <span class="dock-cd" id="playCd" hidden></span>
-      </button>
-      <button type="button" class="dock-btn pet" id="btnPet">
-        <span class="dock-ico">✋</span>
-        <span class="dock-txt">摸摸</span>
-        <span class="dock-cd" id="petCd" hidden></span>
-      </button>
-    </nav>
-
     <footer class="foot">
       <p><a href="portfolio.html">睇組合回報 →</a></p>
-      <p>成長只跟養成已計入金額 · IB 現有結餘暫唔計</p>
-      <p class="note">數據：Finance Manager IB 快照（前端唔連 IBKR）</p>
+      <p class="foot-main">養成進度由 $0 起 · IB 現有結餘只係參考</p>
+      <p class="note">數據來自帳戶快照 · 本頁唔會直連券商</p>
     </footer>
   </main>
 
