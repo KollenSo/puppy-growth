@@ -725,3 +725,22 @@ h1 {
   margin-left: 4px;
 }
 .mood-disclosure[open] > summary::after { content: "▴"; }
+
+/* Expenses page */
+.exp-bars { display: grid; gap: 14px; }
+.exp-bar-meta {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 0.86rem; color: var(--ink-soft); margin-bottom: 6px; font-weight: 600;
+}
+.exp-bar-meta strong {
+  font-family: var(--font-num); font-variant-numeric: tabular-nums;
+  color: var(--ink); font-weight: 700;
+}
+.exp-bar-track {
+  height: 8px; border-radius: var(--r-pill); background: var(--bg-muted); overflow: hidden;
+}
+.exp-bar-fill {
+  height: 100%; border-radius: var(--r-pill);
+  background: linear-gradient(90deg, var(--coral), var(--gold));
+  min-width: 0;
+}

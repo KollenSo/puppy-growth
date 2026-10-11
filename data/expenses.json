@@ -1,0 +1,564 @@
+{
+  "asOf": "2026-10-11",
+  "currency": "HKD",
+  "source": "gmail-receipts",
+  "items": [
+    {
+      "id": "1a12992d63e574d8",
+      "date": "2026-10-11",
+      "merchant": "unknown",
+      "amountHkd": 90.3,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a128d6c699f5fb4",
+      "date": "2026-10-11",
+      "merchant": "McDonald's",
+      "amountHkd": 37.5,
+      "category": "food",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a126a7524a092b7",
+      "date": "2026-10-11",
+      "merchant": "unknown",
+      "amountHkd": 25.9,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a125b96f7d3ba23",
+      "date": "2026-10-10",
+      "merchant": "unknown",
+      "amountHkd": 169,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a1200be06c95291",
+      "date": "2026-10-09",
+      "merchant": "unknown",
+      "amountHkd": 12,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a1200ba7cd67308",
+      "date": "2026-10-09",
+      "merchant": "unknown",
+      "amountHkd": 8,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a11b517ace88979",
+      "date": "2026-10-08",
+      "merchant": "unknown",
+      "amountHkd": 159,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a11b92db55ca35d",
+      "date": "2026-10-08",
+      "merchant": "unknown",
+      "amountHkd": 22,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a11900fa3d4e250",
+      "date": "2026-10-08",
+      "merchant": "unknown",
+      "amountHkd": 20.6,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a117084b8f61bcb",
+      "date": "2026-10-07",
+      "merchant": "unknown",
+      "amountHkd": 21.5,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a113d496f08c6ec",
+      "date": "2026-10-07",
+      "merchant": "unknown",
+      "amountHkd": 19.54,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a10edbc77b6e500",
+      "date": "2026-10-06",
+      "merchant": "unknown",
+      "amountHkd": 4500,
+      "category": "transfer",
+      "channel": "Alipay",
+      "note": "large payment — confirm"
+    },
+    {
+      "id": "1a10f78660e15a91",
+      "date": "2026-10-06",
+      "merchant": "unknown",
+      "amountHkd": 27,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a10b7ce5946230a",
+      "date": "2026-10-05",
+      "merchant": "unknown",
+      "amountHkd": 233,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a10c2b8697f7de3",
+      "date": "2026-10-05",
+      "merchant": "unknown",
+      "amountHkd": 105,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a107b30b9e8d729",
+      "date": "2026-10-05",
+      "merchant": "unknown",
+      "amountHkd": 30.5,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a106054862ab2cd",
+      "date": "2026-10-04",
+      "merchant": "unknown",
+      "amountHkd": 505.09,
+      "category": "transfer",
+      "channel": "Alipay",
+      "note": "large payment — confirm"
+    },
+    {
+      "id": "1a1062fb4ed3c18a",
+      "date": "2026-10-04",
+      "merchant": "unknown",
+      "amountHkd": 283.31,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a10586f010458cc",
+      "date": "2026-10-04",
+      "merchant": "unknown",
+      "amountHkd": 81.33,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a102e4cf1578092",
+      "date": "2026-10-04",
+      "merchant": "unknown",
+      "amountHkd": 18,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a1058c80d980c81",
+      "date": "2026-10-04",
+      "merchant": "unknown",
+      "amountHkd": 15.35,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a1000ac0497a1ba",
+      "date": "2026-10-03",
+      "merchant": "unknown",
+      "amountHkd": 103.06,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a10201608be83ed",
+      "date": "2026-10-03",
+      "merchant": "unknown",
+      "amountHkd": 47.22,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a1021f3225da020",
+      "date": "2026-10-03",
+      "merchant": "unknown",
+      "amountHkd": 21.13,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0fb3197d798efc",
+      "date": "2026-10-02",
+      "merchant": "unknown",
+      "amountHkd": 66.11,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0f808467be2c64",
+      "date": "2026-10-01",
+      "merchant": "Google Workspace",
+      "amountHkd": 263.2,
+      "category": "bills",
+      "channel": "card"
+    },
+    {
+      "id": "1a0f070e9fb37c3c",
+      "date": "2026-09-30",
+      "merchant": "unknown",
+      "amountHkd": 118,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0f03cf514762b0",
+      "date": "2026-09-30",
+      "merchant": "unknown",
+      "amountHkd": 101,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0efe09d346e859",
+      "date": "2026-09-30",
+      "merchant": "Octopus Autopay",
+      "amountHkd": 100,
+      "category": "transport",
+      "channel": "other"
+    },
+    {
+      "id": "1a0f0a4b6c228f16",
+      "date": "2026-09-30",
+      "merchant": "unknown",
+      "amountHkd": 53,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0f270d957e3795",
+      "date": "2026-09-30",
+      "merchant": "unknown",
+      "amountHkd": 47.24,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0f0c18fad5b0e3",
+      "date": "2026-09-30",
+      "merchant": "unknown",
+      "amountHkd": 5.9,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0e58fe3482e248",
+      "date": "2026-09-28",
+      "merchant": "unknown",
+      "amountHkd": 136.77,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0e5c5e43fae9e3",
+      "date": "2026-09-28",
+      "merchant": "unknown",
+      "amountHkd": 34.6,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0e7916a1460736",
+      "date": "2026-09-28",
+      "merchant": "unknown",
+      "amountHkd": 28,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0e140217546267",
+      "date": "2026-09-27",
+      "merchant": "unknown",
+      "amountHkd": 292.4,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0de7294af2f8d2",
+      "date": "2026-09-27",
+      "merchant": "unknown",
+      "amountHkd": 43.51,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0e0a0d478bfae3",
+      "date": "2026-09-27",
+      "merchant": "unknown",
+      "amountHkd": 30.89,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0e143b98c397b2",
+      "date": "2026-09-27",
+      "merchant": "unknown",
+      "amountHkd": 18.75,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0e189c3fc42d4f",
+      "date": "2026-09-27",
+      "merchant": "unknown",
+      "amountHkd": 5.9,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0d787733977ef1",
+      "date": "2026-09-25",
+      "merchant": "Octopus Autopay",
+      "amountHkd": 50,
+      "category": "transport",
+      "channel": "other"
+    },
+    {
+      "id": "1a0d19e5d407b9e5",
+      "date": "2026-09-24",
+      "merchant": "unknown",
+      "amountHkd": 27,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0ccb3258f1f465",
+      "date": "2026-09-23",
+      "merchant": "unknown",
+      "amountHkd": 7.4,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0c762e29ed48d5",
+      "date": "2026-09-22",
+      "merchant": "unknown",
+      "amountHkd": 19.9,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0c1bd6b68d234e",
+      "date": "2026-09-21",
+      "merchant": "unknown",
+      "amountHkd": 15,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0c193757189c01",
+      "date": "2026-09-21",
+      "merchant": "unknown",
+      "amountHkd": 10,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0b9174a49d49c7",
+      "date": "2026-09-19",
+      "merchant": "unknown",
+      "amountHkd": 15,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0b49019452c684",
+      "date": "2026-09-18",
+      "merchant": "Octopus Autopay",
+      "amountHkd": 100,
+      "category": "transport",
+      "channel": "other"
+    },
+    {
+      "id": "1a0b48fdbb235a35",
+      "date": "2026-09-18",
+      "merchant": "unknown",
+      "amountHkd": 100,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0b2c4081118e1e",
+      "date": "2026-09-18",
+      "merchant": "unknown",
+      "amountHkd": 39.03,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0b2af32a44fd1b",
+      "date": "2026-09-18",
+      "merchant": "unknown",
+      "amountHkd": 34.3,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0aee7a577f1f34",
+      "date": "2026-09-17",
+      "merchant": "unknown",
+      "amountHkd": 187.59,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0aebd6848ac6f9",
+      "date": "2026-09-17",
+      "merchant": "Octopus Autopay",
+      "amountHkd": 100,
+      "category": "transport",
+      "channel": "other"
+    },
+    {
+      "id": "1a0aebd25a5a3e24",
+      "date": "2026-09-17",
+      "merchant": "unknown",
+      "amountHkd": 100,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0ad8c486cbb695",
+      "date": "2026-09-17",
+      "merchant": "unknown",
+      "amountHkd": 74,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0a901174b717ea",
+      "date": "2026-09-16",
+      "merchant": "unknown",
+      "amountHkd": 900,
+      "category": "transfer",
+      "channel": "Alipay",
+      "note": "large payment — confirm"
+    },
+    {
+      "id": "1a0a7a756cc27094",
+      "date": "2026-09-16",
+      "merchant": "unknown",
+      "amountHkd": 21,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0a7983a94e4e8b",
+      "date": "2026-09-16",
+      "merchant": "unknown",
+      "amountHkd": 10,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0a7481ec96d9d9",
+      "date": "2026-09-16",
+      "merchant": "unknown",
+      "amountHkd": 8,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a0a525da404c212",
+      "date": "2026-09-15",
+      "merchant": "unknown",
+      "amountHkd": 294,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a09d535eb085308",
+      "date": "2026-09-14",
+      "merchant": "unknown",
+      "amountHkd": 201,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a09aa6c57033181",
+      "date": "2026-09-13",
+      "merchant": "Octopus Autopay",
+      "amountHkd": 100,
+      "category": "transport",
+      "channel": "other"
+    },
+    {
+      "id": "1a09a32d5e4059e2",
+      "date": "2026-09-13",
+      "merchant": "unknown",
+      "amountHkd": 100,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a09b4f64f83da3a",
+      "date": "2026-09-13",
+      "merchant": "unknown",
+      "amountHkd": 44.68,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a09b08e495a6609",
+      "date": "2026-09-13",
+      "merchant": "unknown",
+      "amountHkd": 29,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a09b4fec043c8bb",
+      "date": "2026-09-13",
+      "merchant": "unknown",
+      "amountHkd": 20.64,
+      "category": "other",
+      "channel": "Alipay"
+    },
+    {
+      "id": "1a08f9e9f289c50e",
+      "date": "2026-09-11",
+      "merchant": "unknown",
+      "amountHkd": 511.55,
+      "category": "transfer",
+      "channel": "Alipay",
+      "note": "large payment — confirm"
+    },
+    {
+      "id": "1a090c57c190ebc6",
+      "date": "2026-09-11",
+      "merchant": "unknown",
+      "amountHkd": 500,
+      "category": "transfer",
+      "channel": "Alipay",
+      "note": "large payment — confirm"
+    },
+    {
+      "id": "1a0907c5aff1406f",
+      "date": "2026-09-11",
+      "merchant": "Octopus Autopay",
+      "amountHkd": 100,
+      "category": "transport",
+      "channel": "other"
+    }
+  ]
+}
