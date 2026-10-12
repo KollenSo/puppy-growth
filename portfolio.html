@@ -32,7 +32,10 @@
     <span id="asOfLabel" hidden></span>
 
     <section class="card hero-portfolio">
-      <p class="hero-kicker">總市值</p>
+      <div class="hero-kicker-row">
+        <p class="hero-kicker">總市值</p>
+        <p class="asof-chip" id="asOfChip">—</p>
+      </div>
       <div class="big-num" id="totalValue">—</div>
       <p class="quiet-split">
         <span>現金 <strong id="cashVal">—</strong></span>
@@ -40,6 +43,9 @@
         <span>持倉 <strong id="posVal">—</strong></span>
       </p>
       <p class="fee-quiet">預估費用 <strong id="feeVal">—</strong> · 扣費後 <strong id="netVal">—</strong></p>
+      <p class="growth-bridge" id="growthBridge">
+        養成進度暫由 $0 起計 · <a href="index.html">返回養成</a>
+      </p>
       <span id="feeFormula" hidden></span>
       <span id="feeDrag" hidden></span>
     </section>
@@ -108,6 +114,13 @@
       el.className = "banner " + type;
       el.textContent = msg;
     }
+    function daysSince(iso) {
+      if (!iso) return null;
+      const d = new Date(iso + "T00:00:00");
+      if (Number.isNaN(d.getTime())) return null;
+      return Math.floor((Date.now() - d.getTime()) / 86400000);
+    }
+
     function render(data) {
       const cash = Number(data.cashHkd) || 0;
       const posSum = Number(data.positionsHkd) || 0;
@@ -117,8 +130,14 @@
       const pct = goal > 0 ? (total / goal) * 100 : 0;
       const fee = estimateFeeHkd(total);
       const net = total - fee;
+      const age = daysSince(data.asOf);
 
       document.getElementById("asOfLabel").textContent = data.asOf || "";
+      const chip = document.getElementById("asOfChip");
+      if (chip) {
+        chip.textContent = data.asOf ? "截至 " + data.asOf : "—";
+        chip.classList.toggle("stale", !!(data.stale || (age != null && age >= 3)));
+      }
       document.getElementById("totalValue").textContent = formatHkd(total);
       document.getElementById("cashVal").textContent = formatHkd(cash);
       document.getElementById("posVal").textContent = formatHkd(posSum);
@@ -135,7 +154,7 @@
       rows += `<tr class="total"><td>合計</td><td class="num"></td><td class="num">${formatHkd(total)}</td></tr>`;
       document.getElementById("holdingsBody").innerHTML = rows;
 
-      document.getElementById("goalLine").textContent = "目標 " + formatHkd(goal);
+      document.getElementById("goalLine").textContent = "帳戶對目標 " + formatHkd(goal) + "（組合進度，唔等於養成）";
       document.getElementById("progressPct").textContent = formatPct(pct);
       document.getElementById("barFill").style.width = Math.min(100, pct) + "%";
       document.getElementById("barTrack").setAttribute("aria-valuenow", String(Math.round(pct)));
@@ -145,7 +164,13 @@
         document.getElementById("monthsLeft").textContent =
           "（約 " + Math.ceil(Math.max(0, goal - total) / monthly) + " 個月）";
       }
-      setBanner("", "");
+
+      if (data.stale || (age != null && age >= 3)) {
+        const note = data.staleNote || ("快照日期較舊（" + (data.asOf || "—") + "），數字僅供參考。");
+        setBanner("loading", note);
+      } else {
+        setBanner("", "");
+      }
     }
 
     fetch("data/savings_snapshot.json", { cache: "no-store" })

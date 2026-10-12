@@ -1,8 +1,8 @@
 (() => {
   "use strict";
 
-  // Game progress starts at $0 until boss begins saving next month.
-  // IB snapshot is shown for reference but EXCLUDED from puppy growth.
+  // Game progress starts at $0 until new savings begin next month.
+  // IB snapshot is reference-only and EXCLUDED from puppy growth.
   const GAME_BASELINE_HKD = 0;
   const SAVING_STARTS_NOTE = "下個月開始存錢先計入養成進度";
 
@@ -56,6 +56,7 @@
     btnMute: $("btnMute"),
     statusBanner: $("statusBanner"),
     moodSummary: $("moodSummary"),
+    growthNote: $("growthNote"),
   };
 
   let meters = loadMeters();
@@ -227,36 +228,33 @@
     els.puppyStage.dataset.stage = String(stage.id);
     setStageImage(stage);
     els.stageName.textContent = stage.name;
-    els.stageDesc.textContent = stage.desc;
+
+    if (els.stageDesc) {
+      els.stageDesc.hidden = false;
+      els.stageDesc.textContent = stage.desc || "";
+    }
 
     if (els.stageTip) {
       if (pct >= 100) {
         els.stageTip.hidden = false;
-        els.stageTip.textContent = "目標達成";
+        els.stageTip.textContent = "目標達成 · 小狗長大咗！";
       } else if (needHkd > 0 && nextPct <= 100) {
-        // Keep tip element for logic but hide helper text by default (calm UI)
-        els.stageTip.hidden = true;
-        els.stageTip.textContent = "";
+        els.stageTip.hidden = false;
+        els.stageTip.textContent =
+          "再儲 " + formatHkd(needHkd) + " 就升到下一階段（" + nextPct + "%）";
       } else {
         els.stageTip.hidden = true;
       }
     }
-    if (els.stageDesc) els.stageDesc.hidden = true;
 
-    const cash = Number(data.cashHkd) || 0;
-    const pos = Number(data.positionsHkd) || 0;
-    let posLines = "";
-    if (Array.isArray(data.positions) && data.positions.length) {
-      posLines = data.positions
-        .map((p) => {
-          const sym = p.symbol || "?";
-          const q = p.qty != null ? p.qty : "";
-          const mv = formatHkd(p.mktValueHkd);
-          return `<div class="pos muted-row"><span>${sym}${q !== "" ? " × " + q : ""}</span><span>${mv}</span></div>`;
-        })
-        .join("");
+    if (els.growthNote) {
+      const asOf = data.asOf ? "截至 " + data.asOf + " · " : "";
+      els.growthNote.innerHTML =
+        asOf +
+        "帳戶約 " + formatHkd(ibTotal) +
+        "（暫唔計入） · 詳見 <a href=\"portfolio.html\">組合</a>";
     }
-    // Breakdown kept in DOM for logic/debug but hidden in calm UI
+
     if (els.breakdown) {
       els.breakdown.innerHTML = "";
       els.breakdown.hidden = true;
@@ -265,7 +263,6 @@
       els.monthlyTip.textContent = "";
       els.monthlyTip.hidden = true;
     }
-    void ibTotal; void cash; void pos; void posLines;
   }
 
   function showToast(msg) {
