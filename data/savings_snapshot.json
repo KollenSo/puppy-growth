@@ -1,9 +1,9 @@
 {
-  "asOf": "2026-10-12",
+  "asOf": "2026-10-13",
   "currency": "HKD",
   "cashHkd": 214.8,
-  "positionsHkd": 3015.71,
-  "totalApproxHkd": 3230.51,
+  "positionsHkd": 3014.77,
+  "totalApproxHkd": 3229.57,
   "goalHkd": 48000.0,
   "monthlyTargetHkd": 2000.0,
   "progressPct": 6.73,
@@ -11,8 +11,8 @@
     {
       "symbol": "SPYM",
       "qty": 4.196,
-      "mktValueUsd": 384.27,
-      "mktValueHkd": 3015.71
+      "mktValueUsd": 384.14,
+      "mktValueHkd": 3014.77
     }
   ],
   "source": "IBKR Flex read-only",
